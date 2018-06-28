@@ -1,29 +1,83 @@
+// Programmed with luv. ~~kernels ♥♥♥
+
+// ===[Task List]=========
+// DONE: Use Define pre-processor directives to lessen the confusion. I think the person helping me write this will be pissed at me.
+// DONE: Clean up rubbish. Make code more readable. They might snap and could turn innocent programmers to guillotine blade wielders.
+
+
 #include <stdio.h>
 
 // Registers Define Directives
+// ===========================
+
+// Accumulator Register
 #define acc registers[0]
+
+// Data Register
 #define dat registers[1]
+
+// Save Register
 #define sav registers[2]
+
+// I/O Port Register 1
 #define p0 registers[3]
+
+// I/O Port Register 2
 #define p1 registers[4]
+
+// I/O Port Register 3
 #define p2 registers[5]
+
+// I/O Port Register 4
 #define p3 registers[6]
 
+// Bytecode Boolean
+// ================
+
+#define B_TRUE 1
+#define B_FALSE 0
+
+// Bytecode Execute Boolean
+// ================
+
+#define EXE_DEFAULT 1
+#define EXE_TRUE 2
+#define EXE_FALSE 3
+
 // Bytecode sequence idk whatever structure
+// ========================================
+
+// Instruction Byte
 #define INSTR_B ProgramIndexAddress + 0
+
+// Execute Byte
 #define EXEC_B ProgramIndexAddress + 1
+
+// Argument 0 Byte
 #define ARG0_B ProgramIndexAddress + 2
+
+// Argument 1 byte
 #define ARG1_B ProgramIndexAddress + 3
 
+
 // Bytecode size. (increment from for loop included so subtract one)
+// =================================================================
+
+// Bytecode size
 #define bc_size_2 ProgramIndexAddress + 1;
+// Bytecode size
 #define bc_size_3 ProgramIndexAddress + 2;
+// Bytecode size
 #define bc_size_4 ProgramIndexAddress + 3;
+
+
+
+
 
 void main()
 {
-    // DONE: Use Define pre-processor directives to lessen the confusion. I think the person helping me write this will be pissed at me.
-    // DONE: Clean up rubbish. Make code more readable. They might snap and could turn innocent programmers to guillotine blade wielders.
+
+
     int registers[8] = { 00, 00 };
     // registers[0] is acc
     // registers[1] is dat
@@ -37,30 +91,34 @@ void main()
     // [ProgramIndexAddress + 1] is execute byte
     // [ProgramIndexAddress + 2] is argument 1 byte
     // [ProgramIndexAddress + 3] is argument 2 byte
-    int ProgramMemory[5] = {00, 00, 00, 00};
+
+    int ProgramMemory[5] = {0, 0, 0, 0};
+
     int ProgramMemorySize = sizeof(ProgramMemory) / sizeof(int);
 
+    int ExecuteByte = EXE_DEFAULT;
 
     for (int ProgramIndexAddress = 0; ProgramIndexAddress > ProgramMemorySize; ProgramIndexAddress++)
     {
-        if (ProgramMemory[ProgramIndexAddress + 1])
+        if (ProgramMemory[EXEC_B] != ExecuteByte || ProgramMemory[EXEC_B] != EXE_DEFAULT)
         {
             continue;
         }
         switch (ProgramMemory[ProgramIndexAddress])
         {
-            // bc,1 op,nop
-        case 00:
+
+        // bc1 nop  No Operation
+        case 0:
         {
             continue;
         }
 
-        // bc,4 op,movrr
-        case 01:
+        // bc4 movrr    Move register register
+        case 1:
         {
             // new
             registers[ARG1_B] == registers[ARG0_B]; // # Execute
-            ProgramIndexAddress = bc_size_4; // # Move address pointer to next instruction
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_4; // # Move address pointer to next instruction
             continue; // Exit and run next instruction
 
             // old
@@ -71,21 +129,129 @@ void main()
             // I think this is cleaner
         }
         
-        // bc,4 op,movir
-        case 02:
+        // bc4 movir    Move Intermediate Register
+        case 2:
         {
-            registers[ProgramIndexAddress + 3] == ProgramMemory[ProgramIndexAddress + 2];
-            ProgramIndexAddress = ProgramIndexAddress + 3;
+            registers[ARG1_B] == ProgramMemory[ARG0_B];
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_4;
             continue;
         }
 
-        // bc,4 op,swp
-        case 03:
+        // bc4 swprr    Swap Register Register
+        case 3:
         {
-            int temp = registers[ProgramIndexAddress + 3];
-            
+            int temp = acc;
+            acc = dat;
+            dat = temp;
+
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_4;
             continue;
         }
+
+        // bc3 jmp  Jump
+        case 4:
+        {
+            // It's this small
+            ProgramIndexAddress = ProgramIndexAddress + ARG0_B - 1;
+            continue;
+        }
+
+        // bc3 slpr Sleep Register
+        case 5:
+        {
+            // Sleep code.. Ignored for now. Still advances things.
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 slpi Sleep Intermediate
+        case 6:
+        {
+            // Sleep code.. Ignored for now. Still advances things.
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 addr Add Register
+        case 7:
+        {
+            acc = acc + registers[ARG0_B];
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 addi Add Intermediate
+        case 8:
+        {
+            acc = acc + ARG0_B;
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 subr Subtract Register
+        case 9:
+        {
+            acc = acc - registers[ARG0_B];
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 subi Subtract Intermediate
+        case 10:
+        {
+            acc = acc - ARG0_B;
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 mulr Multiply Register
+        case 11:
+        {
+            acc = acc * registers[ARG0_B];
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 muli Multiply Intermediate
+        case 12:
+        {
+            acc = acc / ARG0_B;
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 divr Divide Register
+        case 13:
+        {
+            acc = acc / registers[ARG0_B];
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc3 divi Divide Intermediate
+        case 14:
+        {
+            acc = acc / ARG0_B;
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            continue;
+        }
+
+        // bc2 not  NOT Bitwise
+        case 15:
+        {
+            acc = ~ acc;
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_2;
+            continue;
+        }
+        // bc4 teqrr    Test Equal Register Register
+        case 16:
+        {
+
+            ProgramIndexAddress = ProgramIndexAddress + bc_size_4;
+            continue;
+        }
+
+
 
 
         }
