@@ -4,6 +4,7 @@ void main()
 {
 	// TODO: Use Define pre-processor directives to lessen the confusion. I think the person helping me write this will be pissed at me.
 	// TODO: Clean up rubbish. Make code more readable. They might snap and could turn innocent programmers to guillotine blade wielders.
+	// DONE: Changed indent size
 	int registers[8] = { 00, 00 };
 	// registers[0] is acc
 	// registers[1] is dat
