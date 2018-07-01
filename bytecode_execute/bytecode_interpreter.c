@@ -118,22 +118,20 @@ void main()
         {
             // new
             registers[ARG1_B] == registers[ARG0_B]; // # Execute
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_4; // # Move address pointer to next instruction
+            ProgramIndexAddress = bc_size_4; // # Move address pointer to next instruction
             continue; // Exit and run next instruction
 
             // old
             //registers[ProgramIndexAddress + 3] == registers[ProgramIndexAddress + 2]; // # Execute
             //ProgramIndexAddress = ProgramIndexAddress + 3; // # Move address pointer to next instruction
             //continue; // Exit and run next instruction
-
-            // I think this is cleaner
         }
         
         // bc4 movir    Move Intermediate Register
         case 2:
         {
             registers[ARG1_B] == ProgramMemory[ARG0_B];
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_4;
+            ProgramIndexAddress = bc_size_4;
             continue;
         }
 
@@ -144,7 +142,7 @@ void main()
             acc = dat;
             dat = temp;
 
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_4;
+            ProgramIndexAddress = bc_size_4;
             continue;
         }
 
@@ -153,6 +151,7 @@ void main()
         {
             // It's this small
             ProgramIndexAddress = ProgramIndexAddress + ARG0_B - 1;
+
             continue;
         }
 
@@ -160,7 +159,7 @@ void main()
         case 5:
         {
             // Sleep code.. Ignored for now. Still advances things.
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -168,7 +167,7 @@ void main()
         case 6:
         {
             // Sleep code.. Ignored for now. Still advances things.
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -176,7 +175,7 @@ void main()
         case 7:
         {
             acc = acc + registers[ARG0_B];
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -184,7 +183,7 @@ void main()
         case 8:
         {
             acc = acc + ARG0_B;
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -192,7 +191,7 @@ void main()
         case 9:
         {
             acc = acc - registers[ARG0_B];
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -200,7 +199,7 @@ void main()
         case 10:
         {
             acc = acc - ARG0_B;
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -208,7 +207,7 @@ void main()
         case 11:
         {
             acc = acc * registers[ARG0_B];
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -216,7 +215,7 @@ void main()
         case 12:
         {
             acc = acc / ARG0_B;
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -224,7 +223,7 @@ void main()
         case 13:
         {
             acc = acc / registers[ARG0_B];
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -232,7 +231,7 @@ void main()
         case 14:
         {
             acc = acc / ARG0_B;
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_3;
+            ProgramIndexAddress = bc_size_3;
             continue;
         }
 
@@ -240,14 +239,14 @@ void main()
         case 15:
         {
             acc = ~ acc;
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_2;
+            ProgramIndexAddress = bc_size_2;
             continue;
         }
         // bc4 teqrr    Test Equal Register Register
         case 16:
         {
 
-            ProgramIndexAddress = ProgramIndexAddress + bc_size_4;
+            ProgramIndexAddress = bc_size_4;
             continue;
         }
 
