@@ -7,7 +7,7 @@
 // DONE: Add the new registers.
 // TODO: Finish the rest of the test instructions.
 // TODO: Unit test each and every instruction.
-// TODO: Initial Full Systems Test(FST). 
+// TODO: Initial Full Systems Test(FST). (URGENT! HAVEN'T DONE A SINGLE TEST YET!!)
 // TODO: Clean code.
 // TODO: Comment almost every line.
 // TODO: Add documentations on each instruction.
