@@ -1,6 +1,11 @@
 # Amethyst-Virtual-Processor
 Embed this to your whatever! Amethyst bytecode is kind of primitive though. I HAVE no idea how proper bytecodes are done so bear with me. this is some dumb project
 
+Though, this is a hastily written program, documentations, and etc. I want this finished by September... Because issues in real life(School starts in September. And no that isn't the reason). Probably won't be able to finish the rest of the projects I've started before September.
+
+>*~~THIS IS A CRY FOR HELP~~* mn5cf2SSX0Q5AcF2Em70EPadN+IpivEY67S6EA7NWW5yCNP7ptKt1RiiDT6hA1t1wSVfQSDQERsI1+RYCv3ow7GZJ/l/IGcG
+
+
 ## Q/A
 Though I don't think some weird trash written and designed in 2 days is something to be proud of... I guess I'll still add information about it. README wants to be filled in aswell, y know. ~~it gets lonely~~
 #### What is the purpose of this?
