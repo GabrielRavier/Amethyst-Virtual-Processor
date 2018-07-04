@@ -3,6 +3,7 @@
 // ===[Task List]=========
 // DONE: Use Define pre-processor directives to lessen the confusion. I think the person helping me write this will be pissed at me.
 // DONE: Clean up rubbish. Make code more readable. They might snap and could turn innocent programmers to guillotine blade wielders.
+// DONE: Design the new instructions
 // TODO: Add the new instructions.
 // DONE: Add the new registers.
 // TODO: Finish the rest of the test instructions.
@@ -11,7 +12,7 @@
 // TODO: Clean code.
 // TODO: Comment almost every line.
 // TODO: Add documentations on each instruction.
-// TODO: Design the stack
+// DONE: Design the stack
 // TODO: Make decisions you undecisive worrywart overthinker. If you keep doing this incompetentness rubbish, you'll never finish anything significant.
 
 // Registers Define Directives
@@ -41,6 +42,9 @@
 // RAM Address Register. Read Only
 #define rma registers[7]
 
+// Program Counter. Read Only
+#define prc registers[8]
+
 // Bytecode Boolean
 // ================
 
@@ -50,9 +54,9 @@
 // Bytecode Execute Boolean
 // ================
 
-#define EXE_DEFAULT 1
-#define EXE_TRUE 2
-#define EXE_FALSE 3
+#define EXE_DEFAULT 0
+#define EXE_TRUE 1
+#define EXE_FALSE 2
 
 // Bytecode sequence idk whatever structure
 // ========================================
@@ -79,6 +83,26 @@
 #define bc_size_3 ProgramIndexAddress + 2;
 // Bytecode size
 #define bc_size_4 ProgramIndexAddress + 3;
+
+// Lazy Defines - Ease of torture
+// ==============================
+
+// PIA - ProgramIndexAddress
+#define PIA ProgramIndexAddress
+
+// Stack Functions
+
+// Stack Instruction: psh L/R R/I
+void PushStackAddressData();
+
+// Stack Instruction: psh R/I
+void PushStackData();
+
+// Stack Instruction: pop
+void PopStack();
+
+// LOWLEVEL: Updates registers STA and STD
+void lv_UpdateStackRegisters();
 
 // ~~ evrgrdn x krnl
 // i ship it.
