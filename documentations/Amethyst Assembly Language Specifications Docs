@@ -1,1 +1,76 @@
+# Revision 12
+
+
+Instructions
+============
+nop           No Operation
+mov R/I R     Move(Copy)
+rmc R/I       Change current address of RAM
+rmv R/I       Change value of RAM on current address
+swp R R       Swap register values
+jmp R/L       Jump to label, Stack and/or RAM addresses
+slp R/I       Sleep (Differs from each implementation)
+exb bb        Set Execute Conditional Bool
+add R/I       Add ACC
+sub R/I       Subtract ACC
+mul R/I       Multiply ACC
+div R/I       Divide ACC
+neg           Toggle signed
+not           NOT Bitwise on ACC
+and R/I       AND Bitwise on ACC
+orr R/I       OR Bitwise on ACC
+xor R/I       XOR bitwise on ACC
+lsf R/I       Left Shift ACC
+rsf R/I       Right Shift ACC
+psh R/L R/I   Push Stack. Address or Label and value. Sets Execute Byte to FALSE if cannot push
+psh R/I       Push Stack. Store current address and store specified value. Sets Execute Byte to FALSE if cannot push
+pop           Pop Stack. Sets Execute Byte to FALSE if cannot pop
+call L        Store address to IDX then jump to label
+ret           Return to IDX
+teq R/I R/I   Test Equality. Sets Execute Conditional Bool
+tgt R/I R/I   Test Greater Than. Sets Execute Conditional Bool
+tlt R/I R/I   Test Less Than. Sets Execute Conditional Bool
+tcp R/I R/I   Test Compare. Sets Execute Conditional Bool
+tdf bb        Test Defined Flag. Sets Execute Conditional Bool
+sdf bb        Set Defined Flag
+
+
+Registers
+=========
+ACC           Accumulator - All arithmethic and logic operations are done against it and also results stored.
+DAT           Data - General purpose register. 
+SAV           Save - General purpose register.
+STA           Top Stack Level Address Register - Top level of stack is peeked here.
+STD           Top Stack Level Data Register - Top level of stack is peeked here.
+IDX           Index - Address oriented register store. Can also store data.
+RMD           RAM Address Register - Read Only register. Reveals current address.
+RMA           RAM Data Register - Read Only register. Reveals data from current address in RAM.
+PRC           Program Counter - Read Only register. Shows current ROM address.
+
+
+Intermediate Values
+===================
+Intermediate values are signed values ranging from -2,147,483,648 to 2,147,483,647
+It is Int32 signed.
+
+
+(Execute) Bool
+==============
+00 DEFAULT    Runs whichever execute bit is set to
+01 TRUE       Runs instruction if execute bit and instruction's execute bit are equal
+02 FALSE      Runs instruction if execute bit and instruction's execute bit are equal
+
+This also applies to flags
+
+# Execute bit is TRUE
++ nop # Runs
+  nop # Runs
+- nop # Will not run
+
+# Execute bit is FALSE
++ nop # Will not run
+  nop # Runs
+- nop # Runs
+
+The Execute Bit will never have the value of DEFAULT.
 
