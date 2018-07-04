@@ -5,6 +5,9 @@ Though, this is a hastily written program, documentations, and etc. I want this 
 
 >*~~THIS IS A CRY FOR HELP~~* mn5cf2SSX0Q5AcF2Em70EPadN+IpivEY67S6EA7NWW5yCNP7ptKt1RiiDT6hA1t1wSVfQSDQERsI1+RYCv3ow7GZJ/l/IGcG
 
+After waking up, I greet my IDE to start programming right away. Countless all-nighters and the occasional mental breakdown.. but whatever the troubles of getting to finish this. I think it will be all worth it.. I guess.
+
+Hopefully it's useful..
 
 ## Q/A
 Though I don't think some weird trash written and designed in 2 days is something to be proud of... I guess I'll still add information about it. README wants to be filled in aswell, y know. ~~it gets lonely~~
