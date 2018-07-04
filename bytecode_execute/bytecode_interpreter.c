@@ -1,7 +1,8 @@
 // Programmed with luv. ~~kernels ♥♥♥
 
 #include <stdio.h>
-#include "bytecode_execute.h"
+#include "interpreter.h"
+
 
 void main()
 {
@@ -24,14 +25,17 @@ void main()
         }
         switch (ProgramMemory[ProgramIndexAddress])
         {
+
         // USELESS INSTRUCTION ================================================
+
         // nop
         case 0:
         {
             continue;
         }
 
-        // MOVES and RAM INSTRUCTIONS =========================================
+        // MOVE INSTRUCTIONS ==================================================
+
         // mov rr
         case 1:
         {
@@ -46,29 +50,37 @@ void main()
             PIA = bc_size_4; continue;
         }
 
+        // RAM INSTRUCTIONS ===================================================
+
         // rmc r
         case 3:
         {
-
+            // Skip for now.
+            PIA = bc_size_3; continue;
         }
 
         // rmc i
         case 4:
         {
-
+            // Skip for now.
+            PIA = bc_size_3; continue;
         }
 
         // rmv r
         case 5:
         {
-
+            // Skip for now.
+            PIA = bc_size_3; continue;
         }
         
         // rmv i
         case 6:
         {
-
+            // Skip for now.
+            PIA = bc_size_3; continue;
         }
+
+        // SWAP INSTRUCTION ===================================================
 
         // swp rr
         case 7:
@@ -95,19 +107,23 @@ void main()
             continue;
         }
 
+        // SLEEP INSTRUCTIONS =================================================
+
         // slp r
         case 10:
         {
             // No logic for now. Skips.
             PIA = bc_size_3; continue;
         }
-        // SLEEP INSTRUCTIONS =================================================
+
         // slp i
         case 11:
         {
             // No logic for now. Skips.
             PIA = bc_size_3; continue;
         }
+
+        // EXECUTE BYTE INSTRUCTION ===========================================
 
         // exb b
         case 12:
@@ -174,18 +190,101 @@ void main()
             PIA = bc_size_3; continue;
         }
 
+        // neg
+        case 21:
+        {
+            acc = -acc;
+            PIA = bc_size_3; continue;
+        }
+
+        // BITWISE INSTRUCTIONS ===============================================
+
+        // not
+        case 22:
+        {
+            acc = ~acc;
+            PIA = bc_size_3; continue;
+        }
+
+        // and r
+        case 23:
+        {
+            acc = acc & registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
+
+        // and i
+        case 24:
+        {
+            acc = acc & ARG0_B;
+            PIA = bc_size_3; continue;
+        }
+
+        // orr r
+        case 25:
+        {
+            acc = acc | registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
+
+        // orr i
+        case 26:
+        {
+            acc = acc | ARG0_B;
+            PIA = bc_size_3; continue;
+        }
+
+        // xor r
+        case 27:
+        {
+            acc = acc ^ registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
+
+        // xor i
+        case 28:
+        {
+            acc = acc ^ ARG0_B;
+            PIA = bc_size_3; continue;
+        }
+
+        // BITWISE.SHIFT INSTRUCTIONS =========================================
+
+        // lsf r
+        case 29:
+        {
+            acc = acc << registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
+
+        // lsf i
+        case 30:
+        {
+            acc = acc << ARG0_B;
+            PIA = bc_size_3; continue;
+        }
+
+        // rsf r
+        case 31:
+        {
+            acc = acc >> registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
+
+        // rsf i
+        case 32:
+        {
+            acc = acc >> ARG0_B;
+            PIA = bc_size_3; continue;
+        }
+
+        // STACK.PUSH INSTRUCTIONS ============================================
 
 
+        // STACK.POP INSTRUCTIONS =============================================
 
 
-
-
-
-
-
-
-
-
+        // CALL/RET INSTRUCTIONS ==============================================
 
 
 
