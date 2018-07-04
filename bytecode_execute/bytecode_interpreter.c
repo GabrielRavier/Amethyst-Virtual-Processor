@@ -3,187 +3,201 @@
 #include <stdio.h>
 #include "bytecode_execute.h"
 
-
-
 void main()
 {
+    int registers[9] = { 00, 00 };
+
+    int ProgramMemory[5] = {0, 0, 0, 0};
 
 
-	int registers[8] = { 00, 00 };
-	// registers[0] is acc
-	// registers[1] is dat
-	// registers[2] is sav
-	// registers[3] is p0
-	// registers[4] is p1
-	// registers[5] is p2
-	// registers[6] is p3
+    int ProgramMemorySize = sizeof(ProgramMemory) / sizeof(int);
 
-	// [ProgramIndexAddress + 0] is instruction byte
-	// [ProgramIndexAddress + 1] is execute byte
-	// [ProgramIndexAddress + 2] is argument 1 byte
-	// [ProgramIndexAddress + 3] is argument 2 byte
 
-	int ProgramMemory[5] = {0, 0, 0, 0};
+    int ExecuteByte = EXE_DEFAULT;
 
-	int ProgramMemorySize = sizeof(ProgramMemory) / sizeof(int);
 
-	int ExecuteByte = EXE_DEFAULT;
+    for (int ProgramIndexAddress = 0; ProgramIndexAddress > ProgramMemorySize; ProgramIndexAddress++)
+    {
+        if (ProgramMemory[EXEC_B] != ExecuteByte || ProgramMemory[EXEC_B] != EXE_DEFAULT)
+        {
+            continue;
+        }
+        switch (ProgramMemory[ProgramIndexAddress])
+        {
+        // USELESS INSTRUCTION ================================================
+        // nop
+        case 0:
+        {
+            continue;
+        }
 
-	for (int ProgramIndexAddress = 0; ProgramIndexAddress > ProgramMemorySize; ProgramIndexAddress++)
-	{
-		if (ProgramMemory[EXEC_B] != ExecuteByte || ProgramMemory[EXEC_B] != EXE_DEFAULT)
-		{
-			continue;
-		}
-		switch (ProgramMemory[ProgramIndexAddress])
-		{
+        // MOVES and RAM INSTRUCTIONS =========================================
+        // mov rr
+        case 1:
+        {
+            registers[ARG1_B] == registers[ARG0_B]; // Execute
+            PIA = bc_size_4; continue; // Finish and move to next instruction
+        }
 
-		// bc1 nop	No Operation
-		case 0:
-		{
-			continue;
-		}
+        // mov ir
+        case 2:
+        {
+            registers[ARG1_B] == ARG0_B;
+            PIA = bc_size_4; continue;
+        }
 
-		// bc4 movrr	Move register register
-		case 1:
-		{
-			// new
-			registers[ARG1_B] == registers[ARG0_B]; // # Execute
-			ProgramIndexAddress = bc_size_4; // # Move address pointer to next instruction
-			continue; // Exit and run next instruction
+        // rmc r
+        case 3:
+        {
 
-			// old
-			//registers[ProgramIndexAddress + 3] == registers[ProgramIndexAddress + 2]; // # Execute
-			//ProgramIndexAddress = ProgramIndexAddress + 3; // # Move address pointer to next instruction
-			//continue; // Exit and run next instruction
-		}
-		
-		// bc4 movir	Move Intermediate Register
-		case 2:
-		{
-			registers[ARG1_B] == ProgramMemory[ARG0_B];
-			ProgramIndexAddress = bc_size_4;
-			continue;
-		}
+        }
 
-		// bc4 swprr	Swap Register Register
-		case 3:
-		{
-			int temp = acc;
-			acc = dat;
-			dat = temp;
+        // rmc i
+        case 4:
+        {
 
-			ProgramIndexAddress = bc_size_4;
-			continue;
-		}
+        }
 
-		// bc3 jmp	Jump
-		case 4:
-		{
-			// It's this small
-			ProgramIndexAddress = ProgramIndexAddress + ARG0_B - 1;
+        // rmv r
+        case 5:
+        {
 
-			continue;
-		}
+        }
+        
+        // rmv i
+        case 6:
+        {
 
-		// bc3 slpr	Sleep Register
-		case 5:
-		{
-			// Sleep code.. Ignored for now. Still advances things.
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        }
 
-		// bc3 slpi	Sleep Intermediate
-		case 6:
-		{
-			// Sleep code.. Ignored for now. Still advances things.
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // swp rr
+        case 7:
+        {
+            int temp = acc;
+            acc = dat;
+            dat = temp;
+            PIA = bc_size_4; continue;
+        }
 
-		// bc3 addr	Add Register
-		case 7:
-		{
-			acc = acc + registers[ARG0_B];
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // JUMP INSTRUCTIONS ==================================================
 
-		// bc3 addi	Add Intermediate
-		case 8:
-		{
-			acc = acc + ARG0_B;
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // jmp l
+        case 8:
+        {
+            PIA = ARG0_B - 1;
+            continue;
+        }
 
-		// bc3 subr	Subtract Register
-		case 9:
-		{
-			acc = acc - registers[ARG0_B];
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // jmp r
+        case 9:
+        {
+            PIA = registers[ARG0_B - 1];
+            continue;
+        }
 
-		// bc3 subi	Subtract Intermediate
-		case 10:
-		{
-			acc = acc - ARG0_B;
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // slp r
+        case 10:
+        {
+            // No logic for now. Skips.
+            PIA = bc_size_3; continue;
+        }
+        // SLEEP INSTRUCTIONS =================================================
+        // slp i
+        case 11:
+        {
+            // No logic for now. Skips.
+            PIA = bc_size_3; continue;
+        }
 
-		// bc3 mulr	Multiply Register
-		case 11:
-		{
-			acc = acc * registers[ARG0_B];
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // exb b
+        case 12:
+        {
+            ExecuteByte = ARG0_B;
+            PIA = bc_size_3; continue;
+        }
 
-		// bc3 muli	Multiply Intermediate
-		case 12:
-		{
-			acc = acc / ARG0_B;
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // ARITHMETHICC INSTRUCTIONS ==========================================
 
-		// bc3 divr	Divide Register
-		case 13:
-		{
-			acc = acc / registers[ARG0_B];
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // add r
+        case 13:
+        {
+            acc = acc + registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
 
-		// bc3 divi	Divide Intermediate
-		case 14:
-		{
-			acc = acc / ARG0_B;
-			ProgramIndexAddress = bc_size_3;
-			continue;
-		}
+        // add i
+        case 14:
+        {
+            acc = acc + ARG0_B;
+            PIA = bc_size_3; continue;
+        }
 
-		// bc2 not	NOT Bitwise
-		case 15:
-		{
-			acc = ~ acc;
-			ProgramIndexAddress = bc_size_2;
-			continue;
-		}
-		// bc4 teqrr	Test Equal Register Register
-		case 16:
-		{
+        // sub r
+        case 15:
+        {
+            acc = acc - registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
 
-			ProgramIndexAddress = bc_size_4;
-			continue;
-		}
+        // sub i
+        case 16:
+        {
+            acc = acc - ARG0_B;
+            PIA = bc_size_3; continue;
+        }
+
+        // mul r
+        case 17:
+        {
+            acc = acc * registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
+
+        // mul i
+        case 18:
+        {
+            acc = acc * ARG0_B;
+            PIA = bc_size_3; continue;
+        }
+
+        // div r
+        case 19:
+        {
+            acc = acc / registers[ARG0_B];
+            PIA = bc_size_3; continue;
+        }
+
+        // div i
+        case 20:
+        {
+            acc = acc / ARG0_B;
+            PIA = bc_size_3; continue;
+        }
 
 
 
 
-		}
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+        // Update ProgramCounter Register
+        prc = ProgramIndexAddress;
+    }
 }
