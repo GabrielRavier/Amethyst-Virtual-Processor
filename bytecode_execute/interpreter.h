@@ -4,16 +4,16 @@
 // DONE: Use Define pre-processor directives to lessen the confusion. I think the person helping me write this will be pissed at me.
 // DONE: Clean up rubbish. Make code more readable. They might snap and could turn innocent programmers to guillotine blade wielders.
 // DONE: Design the new instructions
-// TODO: Add the new instructions.
+// DONE: Add the new instructions.
 // DONE: Add the new registers.
-// TODO: Finish the rest of the test instructions.
-// TODO: Unit test each and every instruction.
-// TODO: Initial Full Systems Test(FST). (URGENT! HAVEN'T DONE A SINGLE TEST YET!!)
-// TODO: Clean code.
-// TODO: Comment almost every line.
-// TODO: Add documentations on each instruction.
+// DONE: Finish the rest of the test instructions.
+// DONE: Clean code.
+// DONE: Comment almost every line.
+// DONE: Add documentations on each instruction.
 // DONE: Design the stack
 // TODO: Make decisions you undecisive worrywart overthinker. If you keep doing this incompetentness rubbish, you'll never finish anything significant.
+// TODO: Unit test each and every instruction.
+// TODO: Initial Full Systems Test(FST). (URGENT! HAVEN'T DONE A SINGLE TEST YET!!)
 
 // Registers Define Directives
 // ===========================
@@ -91,18 +91,22 @@
 #define PIA ProgramIndexAddress
 
 // Stack Functions
+// ===============
 
 // Stack Instruction: psh L/R R/I
-void PushStackAddressData();
+void PushStackAddressData(int address, int data);
 
 // Stack Instruction: psh R/I
-void PushStackData();
+void PushStackData(int data);
 
 // Stack Instruction: pop
 void PopStack();
 
 // LOWLEVEL: Updates registers STA and STD
 void lv_UpdateStackRegisters();
+
+
+
 
 // ~~ evrgrdn x krnl
 // i ship it.
