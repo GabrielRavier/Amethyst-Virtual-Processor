@@ -9,6 +9,15 @@ After waking up, I greet my IDE to start programming right away. Countless all-n
 
 Hopefully it's useful..
 
+### Todo list
+
+Done:
+ * Interpreter
+
+~~Done~~:
+ * Assembler
+ * Disassembler
+
 ## Q/A
 Though I don't think some weird trash written and designed in 2 days is something to be proud of... I guess I'll still add information about it. README wants to be filled in aswell, y know. ~~it gets lonely~~
 #### What is the purpose of this?
