@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Amethyst_Assembler_Translator
 {
-    class Program
+    class cli
     {
         static void Main(string[] args)
         {
-
-
+            Console.WriteLine("AMETHYST Assembly Translator");
+            
 
         }
 

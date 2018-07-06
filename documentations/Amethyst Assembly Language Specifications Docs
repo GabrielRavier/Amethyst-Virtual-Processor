@@ -25,7 +25,7 @@ rsf R/I       Right Shift ACC
 psh R/L R/I   Push Stack. Address or Label and value. Sets Execute Byte to FALSE if cannot push
 psh R/I       Push Stack. Store current address and store specified value. Sets Execute Byte to FALSE if cannot push
 pop           Pop Stack. Sets Execute Byte to FALSE if cannot pop
-call L        Store address to IDX then jump to label
+cal L        Store address to IDX then jump to label
 ret           Return to IDX
 teq R/I R/I   Test Equality. Sets Execute Conditional Bool
 tgt R/I R/I   Test Greater Than. Sets Execute Conditional Bool

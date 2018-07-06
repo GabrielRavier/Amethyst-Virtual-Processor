@@ -1,0 +1,29 @@
+﻿amethystasm.exe
+
+Options
+Input:
+*filename*  Text File
+
+Translate to: /t:
+stbt        Standard Portable Bytecode
+a4bmk5      Amethyst 4 bit Mk5
+a8bmk3      Amethyst 8 bit Mk3
+
+Output Translation to: /o:
+std         Standard Output
+hexfile     Hex File
+cintarr     C Int Array
+cchrarr     C Char Array
+
+
+
+
+
+
+
+
+
+
+
+
+
