@@ -11,6 +11,8 @@ Though, this is a hastily written program, documentations, and etc. I want this 
 
 After waking up, I greet my IDE to start programming right away. Countless all-nighters and the occasional mental breakdown.. but whatever the troubles of getting to finish this. I think it will be all worth it.. I guess.
 
+~~**EDIT**: Most of the time I've spent was actually napping~~
+
 Hopefully it's useful..
 
 ### Todo list
