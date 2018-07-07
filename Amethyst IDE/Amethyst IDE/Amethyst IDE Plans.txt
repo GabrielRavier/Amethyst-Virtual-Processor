@@ -1,0 +1,15 @@
+﻿Syntax Highlight
+Syntax Error Detection
+Intellisense
+Compiler
+Debug Tools
+  Edit and Continue
+  Source-Level Debugger
+  Bytecode Debugger
+  Step-by-Step
+  Watch
+  Breakpoints
+
+
+
+
