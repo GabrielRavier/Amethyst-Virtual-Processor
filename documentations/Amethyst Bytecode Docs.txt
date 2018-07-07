@@ -1,109 +1,112 @@
-        // Instructions
-        
-        / Basic Instructions
-        nop
-        mov R/I R
-        swp R R
-        jmp L
-        slp R/I
-        
-        / Arithmethic and Logic Instructions
-        add R/I
-        sub R/I
-        mul R/I
-        div R/I
-        not
-        
-        / Test Instructions
-        teq R/I R/I
-        tgt R/I R/I
-        tlt R/I R/I
-        tcp R/I R/I
-        tdf
-        
-        / Flag Instructions
-        sdf
-        
-        Instructions and Arguments - Bytecode
-        
-        Argument Types
-        rr - Register
-        ii - Integer
-        AA - Address
-        bb - Boolean
-        
+Bytecode Documentation
+======================
+
+Defines
+-------
+
+bc_size      Bytecode Size
+Operand      Instruction name or mnenomic
+num          Instruction byte
+exe          Execute Bool. DEF,+,-
+arg          Arguments
+
+
+
+Arguments
+---------
+
+rr           Register
+ii           Intermediate Number
+bb           Boolean
+AA           Address(Generated from labels by translator)
+
+
+Registers
+---------
+
+NAME  Argument Value
+-----|--------------
+acc    0
+dat    1
+sav    2
+sta    3
+std    4
+idx    5
+rmd    6
+rma    7
+prc    8
+
+
+
+Boolean
+-------
+
+Value    Bytecode Value
+--------|--------------
+TRUE      1
+FALSE     2
+DEFAULT   0
+
+
+
 bc_size Operand     num exe arg arg
 1       nop         00  
 4       mov R R     01  bb  rr  rr
 4       mov I R     02  bb  ii  rr
-4       swp R R     03  bb  rr  rr
-3       jmp L       04  bb  AA
-3       slp R       05  bb  rr
-3       slp I       06  bb  ii
-3       add R       07  bb  rr
-3       add I       08  bb  ii
-3       sub R       09  bb  rr
-3       sub I       10  bb  ii
-3       mul R       11  bb  rr
-3       mul I       12  bb  ii
-3       div R       13  bb  rr
-3       div I       14  bb  ii
-2       not         15  bb
-
-4       teq R R     16  bb  rr  rr
-4       teq R I     17  bb  rr  ii
-4       teq I R     18  bb  ii  rr
-4       teq I I     19  bb  ii  ii
-
-4       tgt R R     20  bb  rr  rr
-4       tgt R I     21  bb  rr  ii
-4       tgt I R     22  bb  ii  rr
-4		tgt I I		23	bb	ii	ii
-
-4       tlt R R     24  bb  rr  rr
-4       tlt R I     25  bb  rr  ii
-4       tlt I R     26  bb  ii  rr
-4       tlt I I     27  bb  ii  ii
-
-4       tcp R R     28  bb  rr  rr
-4       tcp R I     29  bb  rr  ii
-4       tcp I R     30  bb  ii  rr
-4       tcp I I     31  bb  ii  ii
-
-3       tdf B       32  bb  bb
-3       sdf B       33  bb  bb
-        
-        Bytecode Arguments - Integer
-        Integers are parsed normally. There are no special processing
-        
-        Bytecode Arguments - Registers
-        
-        Some integer values are not allowed.
-        Register Name   Num
-        NUL             00
-        ACC             01
-        DAT             02
-        SAV             03
-        
-        Bytecode Arguments - I/O Ports
-        I/O Ports are also treated as normal registers.
-        
-        Bytecode I/O Registers  Num
-        NUL             00
-        p0              04
-        p1              05
-        p2              06
-        p3              07
-        p4              08
-        p5              09
-        
-        Bytecode Arguments - Boolean
-        Value           Num
-        TRUE            01
-        FALSE           00
-
-		Conditional Execution Argument
-		                Num
-		DEFUALT         00
-		TRUE			01
-		FALSE			02
+3       rmc R       03  bb  rr
+3       rmc I       04  bb  ii
+3       rmv R       05  bb  rr
+3       rmv I       06  bb  ii
+4       swp R R     07  bb  rr  rr
+3       jmp L       08  bb  AA
+3       jmp R       09  bb  rr  
+3       slp R       10  bb  rr
+3       slp I       11  bb  ii
+2       exb xb      12  bb  bb
+3       add R       13  bb  rr
+3       add I       14  bb  ii
+3       sub R       15  bb  rr
+3       sub I       16  bb  ii
+3       mul R       17  bb  rr
+3       mul I       18  bb  ii
+3       div R       19  bb  rr
+3       div I       20  bb  ii
+2       neg         21  bb
+2       not         22  bb
+3       and I       23  bb  ii
+3       and R       24  bb  rr
+3       orr I		25  bb  ii
+3       orr R		26  bb  rr
+3       xor I		27  bb  ii
+3       xor R		28  bb  rr
+3       lsf I		29  bb  ii
+3       lsf R		30  bb  rr
+3       rsf I		31  bb  ii
+3       rsf R		32  bb  rr
+4       psh L I		33  bb  AA  ii
+4       psh L R		34  bb  AA  rr
+4       psh R R     35  bb  rr  rr
+4       psh R I     36  bb  rr  ii
+3       psh I		37  bb  ii
+3       psh R		38  bb  rr
+2       pop			39  bb
+3       call L		40  bb  AA
+2       ret			41  bb
+4       teq R R     42  bb  rr  rr
+4       teq R I     43  bb  rr  ii
+4       teq I R     44  bb  ii  rr
+4       teq I I     45  bb  ii  ii
+4       tgt R R     46  bb  rr  rr
+4       tgt R I     47  bb  rr  ii
+4       tgt I R     48  bb  ii  rr
+4       tgt I I     49  bb  ii  ii
+4       tlt R R     50  bb  rr  rr
+4       tlt R I     51  bb  rr  ii
+4       tlt I R     52  bb  ii  rr
+4       tlt I I     53  bb  ii  ii
+4       tcp R R     54  bb  rr  rr
+4       tcp R I     55  bb  rr  ii
+4       tcp I R     56  bb  ii  rr
+4       tcp I I     57  bb  ii  ii
+3       tdf B       58  bb  bb
+3       sdf B       59  bb  bb
