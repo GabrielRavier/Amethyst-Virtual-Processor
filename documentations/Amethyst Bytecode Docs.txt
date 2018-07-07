@@ -75,23 +75,23 @@ bc_size Operand     num exe arg arg
 2       not         22  bb
 3       and I       23  bb  ii
 3       and R       24  bb  rr
-3       orr I		25  bb  ii
-3       orr R		26  bb  rr
-3       xor I		27  bb  ii
-3       xor R		28  bb  rr
-3       lsf I		29  bb  ii
-3       lsf R		30  bb  rr
-3       rsf I		31  bb  ii
-3       rsf R		32  bb  rr
-4       psh L I		33  bb  AA  ii
-4       psh L R		34  bb  AA  rr
+3       orr I       25  bb  ii
+3       orr R       26  bb  rr
+3       xor I       27  bb  ii
+3       xor R       28  bb  rr
+3       lsf I       29  bb  ii
+3       lsf R       30  bb  rr
+3       rsf I       31  bb  ii
+3       rsf R       32  bb  rr
+4       psh L I     33  bb  AA  ii
+4       psh L R     34  bb  AA  rr
 4       psh R R     35  bb  rr  rr
 4       psh R I     36  bb  rr  ii
-3       psh I		37  bb  ii
-3       psh R		38  bb  rr
-2       pop			39  bb
-3       call L		40  bb  AA
-2       ret			41  bb
+3       psh I       37  bb  ii
+3       psh R       38  bb  rr
+2       pop         39  bb
+3       call L      40  bb  AA
+2       ret         41  bb
 4       teq R R     42  bb  rr  rr
 4       teq R I     43  bb  rr  ii
 4       teq I R     44  bb  ii  rr
