@@ -13,7 +13,7 @@ namespace Amethyst_Assembler_Translator
     }
     class lowlevel
     {
-
+        #region Input Cleaning Methods
         /// <summary>
         /// Preps program for parsing. Removes all comments.
         /// </summary>
@@ -24,7 +24,12 @@ namespace Amethyst_Assembler_Translator
             List<string> OutputProgram = new List<string>();
             foreach (string LineOfProgram in Input)
             {
-                OutputProgram.Add(LineOfProgram.Remove(LineOfProgram.IndexOf('#')));
+                // OutputProgram.Add(LineOfProgram.Remove(LineOfProgram.IndexOf('#')));
+                string SansComment = LineOfProgram.Remove(LineOfProgram.IndexOf('#'));
+                if (SansComment.Length != 0)
+                {
+                    OutputProgram.Add(SansComment);
+                }
             }
             return OutputProgram.ToArray();
         }
@@ -38,6 +43,8 @@ namespace Amethyst_Assembler_Translator
         {
             return InputLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
+        #endregion
+
     }
 
     enum Instructions { nop, mov, rmc, rmv, swp, jmp, slp, exb, add, sub, mul, div, neg, not, and, orr, xor, lsf, rsf, psh, pop, cal, ret, teq, tgt, tlt, tcp, tdf, sdf};
