@@ -87,8 +87,8 @@ bc_size Operand     num exe arg arg
 4       psh L R     34  bb  AA  rr
 4       psh R R     35  bb  rr  rr
 4       psh R I     36  bb  rr  ii
-3       psh I       37  bb  ii
-3       psh R       38  bb  rr
+3       psh R       37  bb  rr
+3       psh I       38  bb  ii
 2       pop         39  bb
 3       call L      40  bb  AA
 2       ret         41  bb

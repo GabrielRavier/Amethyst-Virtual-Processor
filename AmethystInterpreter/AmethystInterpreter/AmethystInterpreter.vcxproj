@@ -18,6 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="intepreter.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="interpreter.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C7AC1D2D-6C2C-4DAB-8D02-7AAC638CA040}</ProjectGuid>
@@ -114,12 +120,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Desktop\Amethyst Bytecode Interpreter\Amethyst_Bintr\Amethyst_Bintr\bytecode_execute.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Desktop\Amethyst Bytecode Interpreter\Amethyst_Bintr\Amethyst_Bintr\interpreter.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Desktop\Amethyst Bytecode Interpreter\Amethyst_Bintr\Amethyst_Bintr\interpreter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Desktop\Amethyst Bytecode Interpreter\Amethyst_Bintr\Amethyst_Bintr\bytecode_execute.c">
+    <ClCompile Include="intepreter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="interpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
