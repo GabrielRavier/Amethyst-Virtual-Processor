@@ -18,11 +18,11 @@ Hopefully it's useful..
 ### Todo list
 
 Done:
- * Interpreter
+ * Interpreter (in C)
 
 ~~Done~~:
- * Assembler
- * Disassembler
+ * Assembler (in C#)
+ * Disassembler (in C#)
 
 ## Q/A
 Though I don't think some weird trash written and designed in 2 days is something to be proud of... I guess I'll still add information about it. README wants to be filled in aswell, y know. ~~it gets lonely~~

@@ -1,0 +1,16 @@
+﻿  mov 100 acc
+  0   1   2
+  ins int reg
+
++ mov 100 acc
+0 1   2   3
+b ins int reg
+
+
+Myabe it should check if it has an executebool first..
+
+
+Parsing Steps
+1. Convert to tokens
+2. Syntax Validity
+3. 
