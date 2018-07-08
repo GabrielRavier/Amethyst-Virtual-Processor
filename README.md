@@ -17,12 +17,23 @@ Hopefully it's useful..
 
 ### Todo list
 
+
+**OH MY DAYS THE INTERPRETER ISN'T TESTED YET\. IT LOOKS GREAT IN CODE, BUT I CAN'T BE SURE IT WILL WORK\.**
+
+
 Done:
- * Interpreter (in C)
+ * Interpreter (C)
+
 
 ~~Done~~:
- * Assembler (in C#)
- * Disassembler (in C#)
+ * Assembler (C#)
+ * Disassembler (C#)
+ * Amethyst IDE (C#)
+ * Interpreter (Lua)
+ * Assembler (Lua)
+ * Amethyst Micro IDE (Lua)
+
+
 
 ## Q/A
 Though I don't think some weird trash written and designed in 2 days is something to be proud of... I guess I'll still add information about it. README wants to be filled in aswell, y know. ~~it gets lonely~~
