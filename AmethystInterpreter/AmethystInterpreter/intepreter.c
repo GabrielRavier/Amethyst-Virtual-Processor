@@ -15,6 +15,10 @@ int StackAddress[9] = { 0,0,0,0,0,0,0,0 };                            // Stackpa
 int StackData[9] = { 0,0,0,0,0,0,0,0 };                               // Stackpart.Data
 int TopLevelIndex = 0;                                                // TopLevelIndex
 
+// Initiate RAM
+
+int RAM[512];
+int RAMCurrentAddr = 0;
 
 																	  // int ProgramMemorySize = sizeof(PRGMEM) / sizeof(int);
 int ProgramMemorySize = sizeof(PRGMEM);
@@ -74,9 +78,8 @@ void main()
 		{
 			if (PRGMEM[EXEC_B] == ExecuteByte || PRGMEM[EXEC_B] == EXE_DEFAULT)
 			{
-
+				RAMCurrentAddr = registers[ARG0_B];
 			}
-			// Skip for now.
 			PIA = bc_size_3; continue;
 		}
 
@@ -85,9 +88,8 @@ void main()
 		{
 			if (PRGMEM[EXEC_B] == ExecuteByte || PRGMEM[EXEC_B] == EXE_DEFAULT)
 			{
-
+				RAMCurrentAddr = PRGMEM[ARG0_B];
 			}
-			// Skip for now.
 			PIA = bc_size_3; continue;
 		}
 
@@ -96,9 +98,8 @@ void main()
 		{
 			if (PRGMEM[EXEC_B] == ExecuteByte || PRGMEM[EXEC_B] == EXE_DEFAULT)
 			{
-
+				RAM[RAMCurrentAddr] = registers[ARG0_B];
 			}
-			// Skip for now.
 			PIA = bc_size_3; continue;
 		}
 
@@ -107,9 +108,8 @@ void main()
 		{
 			if (PRGMEM[EXEC_B] == ExecuteByte || PRGMEM[EXEC_B] == EXE_DEFAULT)
 			{
-
+				RAM[RAMCurrentAddr] = PRGMEM[ARG0_B];
 			}
-			// Skip for now.
 			PIA = bc_size_3; continue;
 		}
 
