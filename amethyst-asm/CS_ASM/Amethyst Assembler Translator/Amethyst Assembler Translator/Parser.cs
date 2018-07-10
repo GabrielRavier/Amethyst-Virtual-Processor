@@ -8,6 +8,9 @@ namespace Amethyst_Assembler_Translator
 {
     partial class std_portablebytecode
     {
+        private const int TOKEN_ARRAY_SIZE = 4;
+
+
         /// <summary>
         /// Cleanse of input is the first step of parsing program input
         /// </summary>
@@ -51,9 +54,19 @@ namespace Amethyst_Assembler_Translator
         {
             internal static void EvaluateProgram(string[] Program, out TokenType[] tokens)
             {
+                string[] test = new string[10];
+                TokenType[] OutputTokens = new TokenType[Program.Length];
+                for (int index = 0; index < Program.Length; index++)
+                {
+                    test[0] = "12";
+                    OutputTokens[index] = ConvertToTokens(Program[index]);
+                    if (SyntaxValidityCheck(Program[index], )
+                    {
 
+                    }
+                }
             }
-            private static TokenType[] ConvertToTokens(string[] InputLine)
+            private static TokenType ConvertToTokens(string InputLine)
             {
                 
                 // Converts this: + mov 100 acc 
