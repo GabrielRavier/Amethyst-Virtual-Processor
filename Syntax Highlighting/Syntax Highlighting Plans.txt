@@ -1,0 +1,14 @@
+Instructions                   Purple
+Registers                      Blue
+
+Integers                       White
+Labels                         Red
+Comments                       Dark Green
+Conditional Execution          Green
+
+Instructions
+mov|rmc|rmv|swp|jmp|slp|exb|add|sub|mul|div|neg|not|and|orr|xor|lsf|rsf|psh|pop|cal|ret|teq|tgt|tlt|tcp|tsf|sdf
+
+Registers
+acc|dat|sav|sta|std|idx|rmd|rma|prc
+
