@@ -2,6 +2,7 @@
 Syntax Error Detection
 Intellisense
 Compiler
+Disassembler
 Debug Tools
   Edit and Continue
   Source-Level Debugger

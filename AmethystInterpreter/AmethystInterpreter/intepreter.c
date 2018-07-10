@@ -7,7 +7,7 @@
 int registers[9] = { 00, 00 };
 
 // Main Program
-int ProgramMemory[5] = { 0, 0, 0, 0 };
+int ProgramMemory[5] = { 0, 0, 0, 0, 0 };
 
 // Initiate Stack
 
@@ -20,8 +20,8 @@ int TopLevelIndex = 0;                                                // TopLeve
 int RAM[512];
 int RAMCurrentAddr = 0;
 
-																	  // int ProgramMemorySize = sizeof(PRGMEM) / sizeof(int);
-int ProgramMemorySize = sizeof(PRGMEM);
+				 													  // int ProgramMemorySize = sizeof(PRGMEM) / sizeof(int);
+int ProgramMemorySize = sizeof(PRGMEM) / sizeof(int);
 
 // Flags
 // =====
@@ -38,6 +38,7 @@ void main()
 	{
 		// Update ProgramCounter Register
 		prc = PIA;
+
 		switch (PRGMEM[ProgramIndexAddress])
 		{
 
@@ -135,7 +136,6 @@ void main()
 			if (PRGMEM[EXEC_B] == ExecuteByte || PRGMEM[EXEC_B] == EXE_DEFAULT)
 			{
 				PIA = PRGMEM[ARG0_B] - 1;
-
 			}
 			continue;
 		}
@@ -735,6 +735,9 @@ void main()
 
 		}
 	}
+
+
+	getchar();
 }
 // Push Address and Data to stack
 void PushStackAddressData(int address, int data)
