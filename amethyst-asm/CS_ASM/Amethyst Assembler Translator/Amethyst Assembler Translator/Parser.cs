@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,23 +55,83 @@ namespace Amethyst_Assembler_Translator
         {
             internal static void EvaluateProgram(string[] Program, out TokenType[] tokens)
             {
-                string[] test = new string[10];
-                TokenType[] OutputTokens = new TokenType[Program.Length];
-                for (int index = 0; index < Program.Length; index++)
-                {
-                    test[0] = "12";
-                    OutputTokens[index] = ConvertToTokens(Program[index]);
-                    if (SyntaxValidityCheck(Program[index], )
-                    {
+                //TokenType[][] OutputTokens = new TokenType[Program.Length][];
 
-                    }
-                }
+                //for (int index = 0; index < Program.Length; index++)
+                //{
+                //    OutputTokens[index] = ConvertToTokens(Program[index]);
+                //    if (SyntaxValidityCheck(Program[index], )
+                //    {
+
+                //    }
+                //}
             }
-            private static TokenType ConvertToTokens(string InputLine)
+            private static TokenType[] ConvertToTokens(string[] InputLine)
             {
-                
                 // Converts this: + mov 100 acc 
                 // EXECUTE_BOOL, INSTRUCTION, INTEGER_LITERAL, REGISTER
+
+                TokenType[] OutputTokens = new TokenType[4];
+
+                int switchcheck = 0;
+                // Check if first is a conditional execution
+                switch (InputLine[switchcheck])
+                {
+                    case "+":
+                        OutputTokens[switchcheck] = TokenType.EXECUTE_BOOL;
+                        break;
+                    case "-":
+                        OutputTokens[switchcheck] = TokenType.EXECUTE_BOOL;
+                        break;
+                    default:
+                        {
+                            if (Enum.TryParse<InstructionsTokens>(InputLine[switchcheck], true, out var result000))
+                            {
+                                switchcheck = 1;
+                                OutputTokens[switchcheck] = TokenType.INSTRUCTION;
+
+                            }
+                            // Check if it is a label
+                            else if(InputLine[switchcheck][0] == ':')
+                            {
+                                switchcheck = 1;
+                                OutputTokens[switchcheck] = TokenType.LABEL;
+                            }
+                            else
+                            {
+                                throw new AmethystException("Invalid Input Line: InputIndex[0] is not an instruction or conditional bool");
+                            }
+                        }
+                        break;
+                }
+
+                #region Checks if next index is an instruction(ASSERT)
+                if (Enum.TryParse<InstructionsTokens>(InputLine[switchcheck], true, out var result001))
+                {
+                    switchcheck += 1;
+                    OutputTokens[switchcheck] = TokenType.INSTRUCTION;
+                }
+                else
+                {
+                    throw new AmethystException("Invalid Input Line: InputIndex[1] is not an instruction");
+                }
+                #endregion
+                #region Checks if next index is argument0 as register, integer or label(default case)
+                if (Enum.TryParse<RegistersTokens>(InputLine[switchcheck], true, out var result002))
+                {
+                    switchcheck += 1;
+                    OutputTokens[switchcheck] = TokenType.INSTRUCTION;
+                }
+                else
+                {
+                    throw new AmethystException("Invalid Input Line: InputIndex[1] is not an instruction");
+                }
+                #endregion
+
+
+
+
+
             }
             private static bool SyntaxValidityCheck(string Program, TokenType[] tokens)
             {
@@ -87,7 +148,7 @@ namespace Amethyst_Assembler_Translator
         }
         #region Tokens
 #pragma warning disable IDE1006 // Naming Styles
-        enum TokenType { INSTRUCTION, REGISTER, INTEGER_LITERAL, BOOLEAN, EXECUTE_BOOL }
+        enum TokenType { INSTRUCTION, REGISTER, INTEGER_LITERAL, BOOLEAN, EXECUTE_BOOL, LABEL }
         enum InstructionsTokens { nop, mov, rmc, rmv, swp, jmp, slp, exb, add, sub, mul, div, neg, not, and, orr, xor, lsf, rsf, psh, pop, cal, ret, teq, tgt, tlt, tcp, tdf, sdf };
         enum RegistersTokens { acc, dat, sav, sta, std, idx }
         enum ReadOnlyRegistersTokens { rmd, rma, prc }
@@ -103,7 +164,7 @@ namespace Amethyst_Assembler_Translator
         public AmethystException(string message) : base(message) { }
         public AmethystException(string message, Exception inner) : base(message, inner) { }
         protected AmethystException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+          SerializationInfo info,
+          StreamingContext context) : base(info, context) { }
     }
 }
