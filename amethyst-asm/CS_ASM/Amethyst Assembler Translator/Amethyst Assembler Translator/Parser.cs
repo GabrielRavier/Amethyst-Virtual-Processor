@@ -66,6 +66,7 @@ namespace Amethyst_Assembler_Translator
                 //    }
                 //}
             }
+
             private static TokenType[] ConvertToTokens(string[] InputLine)
             {
                 // Converts this: + mov 100 acc 
@@ -105,7 +106,8 @@ namespace Amethyst_Assembler_Translator
                         break;
                 }
 
-                #region Checks if next index is an instruction(ASSERT)
+                #region ___
+                //Checks if next index is an instruction(ASSERT)
                 if (Enum.TryParse<InstructionsTokens>(InputLine[switchcheck], true, out var result001))
                 {
                     switchcheck += 1;
@@ -116,15 +118,22 @@ namespace Amethyst_Assembler_Translator
                     throw new AmethystException("Invalid Input Line: InputIndex[1] is not an instruction");
                 }
                 #endregion
-                #region Checks if next index is argument0 as register, integer or label(default case)
+
+                #region ___
+                // Checks if next index is argument0 as register, integer or label(default case)
                 if (Enum.TryParse<RegistersTokens>(InputLine[switchcheck], true, out var result002))
                 {
                     switchcheck += 1;
                     OutputTokens[switchcheck] = TokenType.INSTRUCTION;
+                } else if (Int32.TryParse(InputLine[switchcheck],out var result003))
+                {
+                    switchcheck += 1;
+                    OutputTokens[switchcheck] = TokenType.INTEGER_LITERAL;
                 }
                 else
                 {
-                    throw new AmethystException("Invalid Input Line: InputIndex[1] is not an instruction");
+                    switchcheck += 1;
+                    OutputTokens[switchcheck] = TokenType.LABEL;
                 }
                 #endregion
 
@@ -151,10 +160,14 @@ namespace Amethyst_Assembler_Translator
         enum TokenType { INSTRUCTION, REGISTER, INTEGER_LITERAL, BOOLEAN, EXECUTE_BOOL, LABEL }
         enum InstructionsTokens { nop, mov, rmc, rmv, swp, jmp, slp, exb, add, sub, mul, div, neg, not, and, orr, xor, lsf, rsf, psh, pop, cal, ret, teq, tgt, tlt, tcp, tdf, sdf };
         enum RegistersTokens { acc, dat, sav, sta, std, idx }
+        // enum RegistersTokens { acc, dat, sav, sta, std, idx, rmd, rma, prc }
         enum ReadOnlyRegistersTokens { rmd, rma, prc }
 #pragma warning restore IDE1006 // Naming Styles lmao
         #endregion
 
+        // enum InstructionsTokens { nop, mov, rmc, rmv, swp, jmp, slp, exb, add, sub, mul, div, neg, not, and, orr, xor, lsf, rsf, psh, pop, cal, ret, teq, tgt, tlt, tcp, tdf, sdf };
+        int[] Instruction_b_size = { 2,   3,   3,   3,   4,   3,   3,   3,   3,   3,   3,   3,   2,   2,   3,   3,   3,   3,   3,   4,   2,   3,   2,   4,   4,   4,   4,   3,   3   };
+        // NOTE: PSH can be bc_size_4 or bc_size_3.
     }
 
     [Serializable]

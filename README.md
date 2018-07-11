@@ -36,7 +36,7 @@ Done:
 
 
 ## Q/A
-Though I don't think some weird trash written and designed in 2 days is something to be proud of... I guess I'll still add information about it. README wants to be filled in aswell, y know. ~~it gets lonely~~
+Though I don't think some weird trash designed in a span of 2 weeks is something to be proud of... I guess I'll still add information about it. README wants to be filled in aswell, y know. ~~it gets lonely~~
 #### What is the purpose of this?
 Amethyst bytecode is supposed to be portable code. (Same program can be run on different machines)
 If there is a small game/program that needs scripting. I/you can easily implement and port this. The parsing and interpreting is dead simple so it shouldn't be a problem with many programming languages. It's complexity isn't a problem aswell.

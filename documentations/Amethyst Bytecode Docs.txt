@@ -50,7 +50,7 @@ DEFAULT   0
 
 
 bc_size Operand     num exe arg arg
-1       nop         00  
+1       nop         00  bb  
 4       mov R R     01  bb  rr  rr
 4       mov I R     02  bb  ii  rr
 3       rmc R       03  bb  rr
