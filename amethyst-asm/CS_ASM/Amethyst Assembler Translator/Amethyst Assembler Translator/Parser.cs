@@ -1,4 +1,10 @@
-﻿using System;
+﻿// Programmed with luv.. ~~kernels ♥♥♥
+
+// I was a little insane while writing some of this. There should be stupid comments appended.
+// I need to eat and relieve myself in a while.
+// ~~phhft, goddesses Define, !=, and StackOverflow-chan. Lol I am laughing while typign this. lol it's also 3:10 AM here plz send he[p~~
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -142,9 +148,127 @@ namespace Amethyst_Assembler_Translator
 
 
             }
-            private static bool SyntaxValidityCheck(string Program, TokenType[] tokens)
+            private static bool SyntaxValidityCheck(InstructionsTokens Instruction, TokenType[] tokens)
             {
-                // For that instruction, check if it has the correct tokens and/or arguments.
+                int index = 0;
+                bool condexe = false;
+
+                if (tokens[0] == TokenType.EXECUTE_BOOL)
+                {
+                    condexe = true;
+                    index = 1;
+                }
+
+                // Check Proceedures.
+                switch (Instruction)
+                {
+                    /// mov
+                    case InstructionsTokens.nop:
+                        return true;
+                    /// mov R/I I
+                    case InstructionsTokens.mov:
+                        {
+                            // This stupid long if statement kind of needs a sprinkle of the generous and beautiful goddess named Define
+
+                            // If statement edition
+                            //if ((tokens[index + 1] == TokenType.INTEGER_LITERAL && tokens[index + 2] == TokenType.REGISTER) || (tokens[index + 1] == TokenType.REGISTER || tokens[index + 2] == TokenType.REGISTER))
+                            //{
+
+                            //}
+
+                            // Then I realise, ORing is lazy. Can't we use XOR instead? What if both can be true?
+                            // https://stackoverflow.com/questions/6507850/conditional-xor oh dear heavens != is the pouty goddess that simplifies my problems. Super strict and megane StackOverflow-chan is also a nice goddess. I pray at her everytime I go to sleep after a long night (lenny) of programming. SHahaha
+
+                            // return statement edition
+                            return ((tokens[index + 1] == TokenType.INTEGER_LITERAL && tokens[index + 2] == TokenType.REGISTER) != (tokens[index + 1] == TokenType.REGISTER || tokens[index + 2] == TokenType.REGISTER));
+                        }
+                        break;
+                    /// rmc R/I
+                    case InstructionsTokens.rmc:
+
+                        break;
+                    case InstructionsTokens.rmv:
+
+                        break;
+                    case InstructionsTokens.swp:
+
+                        break;
+                    case InstructionsTokens.jmp:
+
+                        break;
+                    case InstructionsTokens.slp:
+
+                        break;
+                    case InstructionsTokens.exb:
+
+                        break;
+                    case InstructionsTokens.add:
+
+                        break;
+                    case InstructionsTokens.sub:
+
+                        break;
+                    case InstructionsTokens.mul:
+
+                        break;
+                    case InstructionsTokens.div:
+
+                        break;
+                    case InstructionsTokens.neg:
+
+                        break;
+                    case InstructionsTokens.not:
+
+                        break;
+                    case InstructionsTokens.and:
+
+                        break;
+                    case InstructionsTokens.orr:
+
+                        break;
+                    case InstructionsTokens.xor:
+
+                        break;
+                    case InstructionsTokens.lsf:
+
+                        break;
+                    case InstructionsTokens.rsf:
+
+                        break;
+                    case InstructionsTokens.psh:
+
+                        break;
+                    case InstructionsTokens.pop:
+
+                        break;
+                    case InstructionsTokens.cal:
+
+                        break;
+                    case InstructionsTokens.ret:
+
+                        break;
+                    case InstructionsTokens.teq:
+
+                        break;
+                    case InstructionsTokens.tgt:
+
+                        break;
+                    case InstructionsTokens.tlt:
+
+                        break;
+                    case InstructionsTokens.tcp:
+
+                        break;
+                    case InstructionsTokens.tdf:
+
+                        break;
+                    case InstructionsTokens.sdf:
+
+                        break;
+                    default:
+                        throw new AmethystException("Something went wrong with C#");
+                        break;
+                }
             }
         }
 
@@ -159,6 +283,7 @@ namespace Amethyst_Assembler_Translator
 #pragma warning disable IDE1006 // Naming Styles
         enum TokenType { INSTRUCTION, REGISTER, INTEGER_LITERAL, BOOLEAN, EXECUTE_BOOL, LABEL }
         enum InstructionsTokens { nop, mov, rmc, rmv, swp, jmp, slp, exb, add, sub, mul, div, neg, not, and, orr, xor, lsf, rsf, psh, pop, cal, ret, teq, tgt, tlt, tcp, tdf, sdf };
+        enum InstructionsBytecode { }; // nop, movrr, movir, rmcr WAHIDLbvalwfubawfdtghnj Converting enums to int is faster and removes the need of switch blocks I abuse. I'm not a sadist though. I treat my switch statements with care. Please send help at once. 
         enum RegistersTokens { acc, dat, sav, sta, std, idx }
         // enum RegistersTokens { acc, dat, sav, sta, std, idx, rmd, rma, prc }
         enum ReadOnlyRegistersTokens { rmd, rma, prc }
