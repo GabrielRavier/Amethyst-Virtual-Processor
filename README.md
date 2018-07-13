@@ -2,7 +2,9 @@
 
 // Programmed with luv. \~~kernels ♥♥♥
 
-#### IF YOU SAY AMETHYST TAN IS AN ESOTERIC LANGUAGE AND/OR A TOY LANGUAGE, I WILL PERSONALLY FIND YOU.. IMAGINE THE REST OF WHAT I WILL DO TO YOU.
+#### ~~IF YOU SAY AMETHYST TAN IS AN ESOTERIC LANGUAGE AND/OR A TOY LANGUAGE, I WILL PERSONALLY FIND YOU.. IMAGINE THE REST OF WHAT I WILL DO TO YOU.~~
+lol jk chill 
+
 Embed this to your whatever! Amethyst bytecode is kind of primitive though. I HAVE no idea how proper bytecodes are done so bear with me. this is some dumb project
 
 Though, this is a hastily written program, documentations, and etc. I want this finished by September... Because issues in real life(School starts in September. And no that isn't the reason). Probably won't be able to finish the rest of the projects I've started before September.
