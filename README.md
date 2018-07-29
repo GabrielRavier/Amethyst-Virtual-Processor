@@ -44,13 +44,14 @@ Amethyst bytecode is supposed to be portable code. (Same program can be run on d
 If there is a small game/program that needs scripting. I/you can easily implement and port this. The parsing and interpreting is dead simple so it shouldn't be a problem with many programming languages. It's complexity isn't a problem aswell.
 
 #### What is the assembly language?
-The assembly language was first designed by me, but it really looks like Zachronics' syntax(Shenzhen IO and TIS 100). So I just copied the whole thing.
+The assembly language was first designed by me, but it really looks like Zachronics' syntax(Shenzhen IO and TIS 100)(UPDATE: 2.1 now staying away from zack's syntax). So I just copied the whole thing.
 Parsing it aswell is very simple. All you need is spliting strings and converting them to bytes. It's not very complex. The only complex part is the JMP instruction.
 
 #### Is the build failing?
 
 As of now. Yes. It is. Did I test it? OF COURSE NOT. Was any of the programs ran once at all? Ahaha what are yuo talking about? OF COURRRSEE NOT! Yuo simpleton programmer. If you mindlessly write 100 lines of code without testing. I'm gay/straight for you now lmao.
 
+(UPDATE: It has been v2.1.. AND SITLL HASN'T BEEN TESTED YET.)
 
 
 ~~As my insanity grows. I can't tell what I will do next. I'm just supressing it. I want to burst into laughter to release all the pain.~~

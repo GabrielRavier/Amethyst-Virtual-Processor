@@ -1,5 +1,20 @@
 # Revision 00
 
+Codename: Electric Amethyst
+
+Amethyst 2.0 info
+=================
+The Amethyst 2.0 Assembly and bytecode is a huge improvement from 1.0
+ It simplifies RAM accessing, adding powerful indexes.
+
+Instead of TEQ loops and cal-ret's to check updates on a specific port, an internal interrupt handler
+ makes code writing easier and performance faster. By adding Label ":INTERRUPT", everytime the
+ interrupt is signalled, it jumps to that label. RET now returns to the interrupt address(if from
+ an interrupt)
+
+
+
+
 New Features
 ============
 
@@ -12,7 +27,8 @@ Argument Symbols
 ================
 $00		Intermediate Number
 *00		Intermediate Address
-^IDX	Pointer Dereference. Treat Address Register as a Data Register. The Data shall be the value in the pointed memory location.
+^IDX	Pointer Dereference. Treat Register Address as Data Register. Contents in specified address will be the data
+^00		Pointer Dereference. Treat Intermediate Address as Data Register. Contents in specified address will be the data
 !ACC	Register
 :LABEL  Label as argument input
 
@@ -36,10 +52,12 @@ Misc/unsorted Arguments
 Instructions
 ============
 nop				No Operation
-mov R/I/A vr/AA	Move(Copy)
-swp R R			Swap register values
-jmp R/L			Jump to label, Stack and/or RAM addresses
-slp R/I			Sleep (Differs from each implementation)
+mov D/I D		Move Data from data register or intermediate number to register(Copy)
+mov P/A P		Move Address from address register or intermediate address to register
+swp D D			Swap data register values
+swp P P			Swap address register values
+jmp P/L			Jump to label, Stack and/or RAM addresses
+slp D/I			Sleep (Differs from each implementation)
 exb B			Set Execute Conditional Bool
 sdf B			Set Defined Flag
 inc R/A			Increment Register or Address
@@ -59,16 +77,16 @@ psh R/A/L R/I/A	Push Stack. Register, intermediate Address, Label Address and va
 psh R/I			Push Stack. Store current address and store specified value. Sets Execute Byte to FALSE if cannot push
 pop				Pop Stack. Sets Execute Byte to FALSE if cannot pop
 cal L			Store address to IDX then jump to label
-ret				Return/jump to IDX
+ret				Return/jump to IDX. If from an interrupt, return to Interrupt Address.
 teq D/I D/I		Test Equality. Sets Execute Conditional Bool
 tgt D/I D/I		Test Greater Than. Sets Execute Conditional Bool
 tlt D/I D/I		Test Less Than. Sets Execute Conditional Bool
 tcp D/I D/I		Test Compare. Sets Execute Conditional Bool
 tdf B			Test Defined Flag. Sets Execute Conditional Bool
-beq D/I D/I P/A Branch on Equal
-bgt D/I D/I P/A Branch on Greater Than
-blt D/I D/I P/A Branch on Less Than
-bcp D/I D/I P/A Branch. Test Compare results.
+beq D/I D/I P/L Branch on Equal
+bgt D/I D/I P/L Branch on Greater Than
+blt D/I D/I P/L Branch on Less Than
+bcp D/I D/I P/L Branch. Test Compare results.
 bdf B P/A		Branch on Defined Flag.
 
 
@@ -78,10 +96,10 @@ General Purpose Registers[D]
   ACC	Accumulator					All arithmethic and logic operations are done against it and also results stored.
   DAT	Data						General purpose register.
 ----------------------------
-Stack-Peeking Read Only Registers[P]
+Stack-Peeking Read Only Registers[P](READ-ONLY)
   STA	Top Stack Level Address		Top level of stack is peeked here.
   STD	Top Stack Level Data		Top level of stack is peeked here.
-------------------------------------
+-----------------------------------------------
 Index Registers[P]
   IDX	Index						Address oriented register store.
   IDA	Index A						Address Register A
@@ -91,7 +109,7 @@ Index Registers[P]
 Read-Only registers
   PRC	Program Counter[P]				Shows current ROM address.
   CPI	Constant - Pi[D]				(Read Only register). Constant value of 3.1415926
-----------------------
+-------------------
 
 
 
@@ -120,6 +138,11 @@ This also applies to flags
 - nop # Runs
 
 The Execute Bit will never have the value of DEFAULT.
+
+
+Tips and Tricks
+===============
+ • IDX should be only used be for program ROM.
 
 Example Code
 ============
