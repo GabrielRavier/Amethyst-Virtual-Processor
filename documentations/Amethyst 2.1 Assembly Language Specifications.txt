@@ -2,7 +2,7 @@
 
 Codename: Electric Amethyst
 
-Amethyst 2.0 info
+Amethyst 2.1 info
 =================
 The Amethyst 2.0 Assembly and bytecode is a huge improvement from 1.0
  It simplifies RAM accessing, adding powerful indexes.
