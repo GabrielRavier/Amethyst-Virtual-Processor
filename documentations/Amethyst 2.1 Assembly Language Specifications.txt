@@ -67,11 +67,11 @@ mul D/I			Multiply ACC
 div D/I			Divide ACC
 neg				Toggle signed
 not				NOT Bitwise on ACC
-and D/I/A		AND Bitwise on ACC
-orr D/I/A		OR Bitwise on ACC
-xor D/I/A		XOR bitwise on ACC
-lsf D/I/A		Left Shift ACC
-rsf D/I/A		Right Shift ACC
+and D/I			AND Bitwise on ACC
+orr D/I			OR Bitwise on ACC
+xor D/I			XOR bitwise on ACC
+lsf D/I			Left Shift ACC
+rsf D/I			Right Shift ACC
 psh P/A/L D/I	Push Stack. Address Register, Intermediate Address, Label Address and Value. Sets Execute Byte to FALSE if cannot push
 psh R/I			Push Stack. Store current address and store value. Sets Execute Byte to FALSE if cannot push
 pop				Pop Stack. Sets Execute Byte to FALSE if cannot pop
