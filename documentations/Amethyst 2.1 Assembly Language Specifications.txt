@@ -1,0 +1,130 @@
+# Revision 00
+
+New Features
+============
+
+ * Interrupts
+   * Set Interrupt Address
+ * Simplified RAM accesses
+ * Math functions - sin, cos, tan, log and PI constant(3.1415926)
+
+Argument Symbols
+================
+$00		Intermediate Number
+*00		Intermediate Address
+^IDX	Pointer Dereference. Treat Address Register as a Data Register. The Data shall be the value in the pointed memory location.
+!ACC	Register
+:LABEL  Label as argument input
+
+Arguments
+=========
+Register Arguments
+  R		Any Register
+  P		Address Register
+  D		Data Register
+------------------
+Intermediate Arguments
+  I		Intermediate Number
+  A		Intermediate Address
+----------------------
+Misc/unsorted Arguments
+  L		Label
+  B		Boolean
+-----------------------
+
+
+Instructions
+============
+nop				No Operation
+mov R/I/A vr/AA	Move(Copy)
+swp R R			Swap register values
+jmp R/L			Jump to label, Stack and/or RAM addresses
+slp R/I			Sleep (Differs from each implementation)
+exb B			Set Execute Conditional Bool
+sdf B			Set Defined Flag
+inc R/A			Increment Register or Address
+dec R/A			Decrement Register or Address
+add D/I			Add ACC
+sub D/I			Subtract ACC
+mul D/I			Multiply ACC
+div D/I			Divide ACC
+neg				Toggle signed
+not				NOT Bitwise on ACC
+and D/I/A		AND Bitwise on ACC
+orr D/I/A		OR Bitwise on ACC
+xor D/I/A		XOR bitwise on ACC
+lsf D/I/A		Left Shift ACC
+rsf D/I/A		Right Shift ACC
+psh R/A/L R/I/A	Push Stack. Register, intermediate Address, Label Address and value. Sets Execute Byte to FALSE if cannot push
+psh R/I			Push Stack. Store current address and store specified value. Sets Execute Byte to FALSE if cannot push
+pop				Pop Stack. Sets Execute Byte to FALSE if cannot pop
+cal L			Store address to IDX then jump to label
+ret				Return/jump to IDX
+teq D/I D/I		Test Equality. Sets Execute Conditional Bool
+tgt D/I D/I		Test Greater Than. Sets Execute Conditional Bool
+tlt D/I D/I		Test Less Than. Sets Execute Conditional Bool
+tcp D/I D/I		Test Compare. Sets Execute Conditional Bool
+tdf B			Test Defined Flag. Sets Execute Conditional Bool
+beq D/I D/I P/A Branch on Equal
+bgt D/I D/I P/A Branch on Greater Than
+blt D/I D/I P/A Branch on Less Than
+bcp D/I D/I P/A Branch. Test Compare results.
+bdf B P/A		Branch on Defined Flag.
+
+
+Registers
+=========
+General Purpose Registers[D]
+  ACC	Accumulator					All arithmethic and logic operations are done against it and also results stored.
+  DAT	Data						General purpose register.
+----------------------------
+Stack-Peeking Read Only Registers[P]
+  STA	Top Stack Level Address		Top level of stack is peeked here.
+  STD	Top Stack Level Data		Top level of stack is peeked here.
+------------------------------------
+Index Registers[P]
+  IDX	Index						Address oriented register store.
+  IDA	Index A						Address Register A
+  IDB	Index B						Address Register B
+  INT	Interrupt Address			If interrupt is signalled, save current address to this register, and jump to label :INTERRUPT
+------------------
+Read-Only registers
+  PRC	Program Counter[P]				Shows current ROM address.
+  CPI	Constant - Pi[D]				(Read Only register). Constant value of 3.1415926
+----------------------
+
+
+
+Intermediate Values
+===================
+Intermediate values are signed values ranging from -2,147,483,648 to 2,147,483,647
+It is Int32 signed.
+
+
+(Execute) Bool
+==============
+00 DEFAULT    Runs whichever execute bit is set to
+01 TRUE       Runs instruction if execute bit and instruction's execute bit are equal
+02 FALSE      Runs instruction if execute bit and instruction's execute bit are equal
+
+This also applies to flags
+
+# Execute bit is TRUE
++ nop # Runs
+  nop # Runs
+- nop # Will not run
+
+# Execute bit is FALSE
++ nop # Will not run
+  nop # Runs
+- nop # Runs
+
+The Execute Bit will never have the value of DEFAULT.
+
+Example Code
+============
+
+
+
+
+

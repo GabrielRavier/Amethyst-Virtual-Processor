@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Amethyst_IDE
 {
-    public partial class Form1 : Form
+    public partial class Amethyst_IDE_Form : Form
     {
-        public Form1()
+        public Amethyst_IDE_Form()
         {
             InitializeComponent();
         }

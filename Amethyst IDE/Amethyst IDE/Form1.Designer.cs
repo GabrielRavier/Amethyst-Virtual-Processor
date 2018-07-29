@@ -1,6 +1,6 @@
 ﻿namespace Amethyst_IDE
 {
-    partial class Form1
+    partial class Amethyst_IDE_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Amethyst_IDE_Form));
             this.SuspendLayout();
             // 
-            // Form1
+            // Amethyst_IDE_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 547);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Amethyst_IDE_Form";
             this.ResumeLayout(false);
 
         }

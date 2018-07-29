@@ -10,3 +10,4 @@ Debug Tools
   Step-by-Step
   Watch
   Breakpoints
+Interactive
