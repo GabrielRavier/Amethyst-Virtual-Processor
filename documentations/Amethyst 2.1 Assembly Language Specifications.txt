@@ -1,4 +1,4 @@
-# Revision 00
+# Revision 6 C.C
 
 Codename: Electric Amethyst
 
@@ -12,14 +12,13 @@ Instead of TEQ loops and cal-ret's to check updates on a specific port, an inter
  interrupt is signalled, it jumps to that label. RET now returns to the interrupt address(if from
  an interrupt)
 
-
+The game specific, it requires sine, cosine, tangent and log, and of course pi
 
 
 New Features
 ============
 
  * Interrupts
-   * Set Interrupt Address
  * Simplified RAM accesses
  * Math functions - sin, cos, tan, log and PI constant(3.1415926)
 
@@ -56,7 +55,7 @@ mov D/I D		Move Data from data register or intermediate number to register(Copy)
 mov P/A P		Move Address from address register or intermediate address to register
 swp D D			Swap data register values
 swp P P			Swap address register values
-jmp P/L			Jump to label, Stack and/or RAM addresses
+jmp P/L			Jump to label or Index Register(IDX and STA only)
 slp D/I			Sleep (Differs from each implementation)
 exb B			Set Execute Conditional Bool
 sdf B			Set Defined Flag
@@ -73,20 +72,20 @@ orr D/I/A		OR Bitwise on ACC
 xor D/I/A		XOR bitwise on ACC
 lsf D/I/A		Left Shift ACC
 rsf D/I/A		Right Shift ACC
-psh R/A/L R/I/A	Push Stack. Register, intermediate Address, Label Address and value. Sets Execute Byte to FALSE if cannot push
-psh R/I			Push Stack. Store current address and store specified value. Sets Execute Byte to FALSE if cannot push
+psh P/A/L D/I	Push Stack. Address Register, Intermediate Address, Label Address and Value. Sets Execute Byte to FALSE if cannot push
+psh R/I			Push Stack. Store current address and store value. Sets Execute Byte to FALSE if cannot push
 pop				Pop Stack. Sets Execute Byte to FALSE if cannot pop
-cal L			Store address to IDX then jump to label
+cal P/L			Store address to IDX then jump to label
 ret				Return/jump to IDX. If from an interrupt, return to Interrupt Address.
 teq D/I D/I		Test Equality. Sets Execute Conditional Bool
 tgt D/I D/I		Test Greater Than. Sets Execute Conditional Bool
 tlt D/I D/I		Test Less Than. Sets Execute Conditional Bool
 tcp D/I D/I		Test Compare. Sets Execute Conditional Bool
 tdf B			Test Defined Flag. Sets Execute Conditional Bool
-beq D/I D/I P/L Branch on Equal
-bgt D/I D/I P/L Branch on Greater Than
-blt D/I D/I P/L Branch on Less Than
-bcp D/I D/I P/L Branch. Test Compare results.
+beq D/I D/I L	Branch on Equal
+bgt D/I D/I L	Branch on Greater Than
+blt D/I D/I L	Branch on Less Than
+bcp D/I D/I		L Branch. Test Compare results.
 bdf B P/A		Branch on Defined Flag.
 
 
@@ -96,9 +95,9 @@ General Purpose Registers[D]
   ACC	Accumulator					All arithmethic and logic operations are done against it and also results stored.
   DAT	Data						General purpose register.
 ----------------------------
-Stack-Peeking Read Only Registers[P](READ-ONLY)
-  STA	Top Stack Level Address		Top level of stack is peeked here.
-  STD	Top Stack Level Data		Top level of stack is peeked here.
+Stack-Peeking Read Only Registers(READ-ONLY)
+  STA	Top Stack Level Address[P]	Top level of stack is peeked here.
+  STD	Top Stack Level Data[D]		Top level of stack is peeked here.
 -----------------------------------------------
 Index Registers[P]
   IDX	Index						Address oriented register store.
@@ -111,6 +110,10 @@ Read-Only registers
   CPI	Constant - Pi[D]				(Read Only register). Constant value of 3.1415926
 -------------------
 
+Flags(Internal Use Only)
+========================
+EXECUTE_BOOL
+IN_INTERRUPT
 
 
 Intermediate Values
@@ -142,7 +145,6 @@ The Execute Bit will never have the value of DEFAULT.
 
 Tips and Tricks
 ===============
- • IDX should be only used be for program ROM.
 
 Example Code
 ============
