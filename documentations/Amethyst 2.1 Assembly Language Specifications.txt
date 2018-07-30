@@ -1,6 +1,9 @@
-# Revision 8 C.C
+# Revision 9 C.C rev12
 
-Codename: Electric Amethyst
+Codename: Electric Amethyst v2.1
+
+STATUS: NOT FINISHED
+
 
 Amethyst 2.1 info
 =================
@@ -30,6 +33,12 @@ $00		Intermediate Number
 !ACC	Register
 :LABEL  Label as argument input
 
+Data Types
+==========
+Data				D
+RAM Address			P
+ROM Address Label	L
+ ROM Address int	L(ONLY USED FOR AND BY INTERRUPTS)
 
 Arguments
 =========
@@ -55,7 +64,7 @@ mov D/I D		Move Data from data register or intermediate number to register(Copy)
 mov P/A P		Move Address from address register or intermediate address to register
 swp D D			Swap data register values
 swp P P			Swap address register values
-jmp P/L			Jump to label or Index Register(IDX and STA only)
+jmp P/L			Jump to label or ROM Index Register(IDX and STL only)
 slp D/I			Sleep (Differs from each implementation)
 exb B			Set Execute Conditional Bool
 sdf B			Set Defined Flag
@@ -72,10 +81,10 @@ orr D/I			OR Bitwise on ACC
 xor D/I			XOR bitwise on ACC
 lsf D/I			Left Shift ACC
 rsf D/I			Right Shift ACC
-psh P/A/L D/I	Push Stack. Address Register, Intermediate Address, Label Address and Value. Sets Execute Byte to FALSE if cannot push
+psh P/A D/I		Push Stack. Address Register, Intermediate Address, Label Address and Value. Sets Execute Byte to FALSE if cannot push
 psh R/I			Push Stack. Store current address and store value. Sets Execute Byte to FALSE if cannot push
 pop				Pop Stack. Sets Execute Byte to FALSE if cannot pop
-cal P/L			Store address to IDX then jump to label
+cal L			Store address to IDX then jump to label. If stacks are too complicated for you.
 ret				Return/jump to IDX. If from an interrupt, return to Interrupt Address.
 teq D/I D/I		Test Equality. Sets Execute Conditional Bool
 tgt D/I D/I		Test Greater Than. Sets Execute Conditional Bool
@@ -86,27 +95,78 @@ beq D/I D/I L	Branch on Equal
 bgt D/I D/I L	Branch on Greater Than
 blt D/I D/I L	Branch on Less Than
 bcp D/I D/I L	Branch. Test Compare results.
-bdf B P/A		Branch on Defined Flag.
+bdf B L			Branch on Defined Flag.
+
+Instructions Sorted by Instruction Size
+---------------------------------------
+
+--[ 2
+nop
+neg
+not
+pop
+ret
+
+--[ 3
+
+jmp
+slp
+exb
+sdf
+inc
+dec
+add
+sub
+mul
+div
+add
+orr
+xor
+lsf
+rsf
+psh
+cal
+tdf
+
+--[ 4
+mov
+swp
+psh
+teq
+tgt
+tlt
+tcp
+bdf
+
+--[ 5
+
+beq
+bgt
+blt
+bcp
+
+
 
 
 Registers
 =========
-General Purpose Registers[D]
-  ACC	Accumulator					All arithmethic and logic operations are done against it and also results stored.
-  DAT	Data						General purpose register.
+General Purpose Registers
+  ACC	Accumulator[D]				All arithmethic and logic operations are done against it and also results stored.
+  DAT	Data[D]						General purpose register.
 ----------------------------
 Stack-Peeking Read Only Registers(READ-ONLY)
-  STA	Top Stack Level Address[P]	Top level of stack is peeked here.
-  STD	Top Stack Level Data[D]		Top level of stack is peeked here.
+  STA	Top Stack Level Address[P]	Top level of stack is peeked here. Address
+  STD	Top Stack Level Data[D]		Top level of stack is peeked here. Data
+  STL   Top Stack Level Label[L]	Top level of stack is peeked here. Label
 -----------------------------------------------
-Index Registers[P]
-  IDX	Index						Address oriented register store.
-  IDA	Index A						Address Register A
-  IDB	Index B						Address Register B
-  INT	Interrupt Address			If interrupt is signalled, save current address to this register, and jump to label :INTERRUPT
+Index Registers
+  IDX	Index[T]					Address oriented register store.
+  IDA	Index A[P]					Address Register A
+  IDB	Index B[P]					Address Register B
+  INT	Interrupt Address[L(litrl)]	If interrupt is signalled, save current address to this register, and jump to label :INTERRUPT
 ------------------
 Read-Only registers
-  PRC	Program Counter[P]			Shows current ROM address.
+  PRC	Program Counter[L(litrl)]	Shows current ROM address.
 -------------------
 
 Flags(Internal Use Only)
