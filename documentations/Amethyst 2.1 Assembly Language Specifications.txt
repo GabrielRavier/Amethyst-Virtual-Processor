@@ -1,4 +1,4 @@
-# Revision 6 C.C
+# Revision 8 C.C
 
 Codename: Electric Amethyst
 
@@ -12,24 +12,24 @@ Instead of TEQ loops and cal-ret's to check updates on a specific port, an inter
  interrupt is signalled, it jumps to that label. RET now returns to the interrupt address(if from
  an interrupt)
 
-The game specific, it requires sine, cosine, tangent and log, and of course pi
-
 
 New Features
 ============
 
  * Interrupts
+ * Simplier parsing
  * Simplified RAM accesses
- * Math functions - sin, cos, tan, log and PI constant(3.1415926)
+
 
 Argument Symbols
 ================
 $00		Intermediate Number
 *00		Intermediate Address
-^IDX	Pointer Dereference. Treat Register Address as Data Register. Contents in specified address will be the data
-^00		Pointer Dereference. Treat Intermediate Address as Data Register. Contents in specified address will be the data
+^!IDX	Pointer Dereference. Treat Register Address as Data Register. Contents in specified address will be the data
+^*00	Pointer Dereference. Treat Intermediate Address as Data Register. Contents in specified address will be the data
 !ACC	Register
 :LABEL  Label as argument input
+
 
 Arguments
 =========
@@ -59,8 +59,8 @@ jmp P/L			Jump to label or Index Register(IDX and STA only)
 slp D/I			Sleep (Differs from each implementation)
 exb B			Set Execute Conditional Bool
 sdf B			Set Defined Flag
-inc R/A			Increment Register or Address
-dec R/A			Decrement Register or Address
+inc R			Increment Register
+dec R			Decrement Register
 add D/I			Add ACC
 sub D/I			Subtract ACC
 mul D/I			Multiply ACC
@@ -85,7 +85,7 @@ tdf B			Test Defined Flag. Sets Execute Conditional Bool
 beq D/I D/I L	Branch on Equal
 bgt D/I D/I L	Branch on Greater Than
 blt D/I D/I L	Branch on Less Than
-bcp D/I D/I		L Branch. Test Compare results.
+bcp D/I D/I L	Branch. Test Compare results.
 bdf B P/A		Branch on Defined Flag.
 
 
@@ -106,8 +106,7 @@ Index Registers[P]
   INT	Interrupt Address			If interrupt is signalled, save current address to this register, and jump to label :INTERRUPT
 ------------------
 Read-Only registers
-  PRC	Program Counter[P]				Shows current ROM address.
-  CPI	Constant - Pi[D]				(Read Only register). Constant value of 3.1415926
+  PRC	Program Counter[P]			Shows current ROM address.
 -------------------
 
 Flags(Internal Use Only)
@@ -145,6 +144,7 @@ The Execute Bit will never have the value of DEFAULT.
 
 Tips and Tricks
 ===============
+
 
 Example Code
 ============
