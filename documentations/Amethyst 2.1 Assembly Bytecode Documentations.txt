@@ -37,13 +37,13 @@ Instructions Sorted by Instruction Size
 ---------------------------------------
 
 --[ 2 HAS: 6
-nop  slp  neg
-not  pop  ret
+nop  neg  not
+pop  ret
 
 --[ 3
 
 jmp HAS: 17
-     exb  sdf
+slp  exb  sdf
 inc  dec  add
 sub  mul  div
 and  orr  xor
@@ -79,60 +79,83 @@ DECr
 
 ADDi
 ADDd
-ADDptrr
-ADDptra
+ADD_ptrr
+ADD_ptra
 
 SUBi
 SUBd
-SUBptrr
-SUBptra
+SUB_ptrr
+SUB_ptra
 
 MULi
 MULd
-MULptrr
-MULptra
+MUL_ptrr
+MUL_ptra
 
 DIVi
 DIVd
-DIVptrr
-DIVptra
+DIV_ptrr
+DIV_ptra
 
 ANDi
 ANDd
-ANDptrr
-ANDptra
+AND_ptrr
+AND_ptra
 
 ORRi
 ORRd
-ORRptrr
-ORRptra
+ORR_ptrr
+ORR_ptra
 
 XORi
 XORd
-XORptrr
-XORptra
+XOR_ptrr
+XOR_ptra
 
 LSFi
 LSFd
-LSFptrr
-LSFptra
+LSF_ptrr
+LSF_ptra
 
 RSFi
 RSFd
-RSFptrr
-RSFptra
+RSF_ptrr
+RSF_ptra
 
 PSHpi
 PSHad
-
 PSHpi
 PSHad
+PSHp_ptri
+PSHa_ptrd
+PSHp_ptri
+PSHa_ptrd
 
-PSHp
-PSHa
+PSHi
+PSHd
+PSH_ptri
+PSH_ptrd
 
+PSHpil
+PSHadl
+PSHpil
+PSHadl
+PSHp_ptral
+PSHa_ptrpl
+PSHp_ptral
+PSHa_ptrpl
 
+CALLl
 
+TDFb
+
+MOVdd
+MOVid
+MOV_ptrad
+MOV_ptrpd
+
+MOVap
+MOVpp
 
 
 
