@@ -33,6 +33,110 @@ TRUE      1
 FALSE     2
 DEFAULT   0
 
+Instructions Sorted by Instruction Size
+---------------------------------------
+
+--[ 2 HAS: 6
+nop  slp  neg
+not  pop  ret
+
+--[ 3
+
+jmp HAS: 17
+     exb  sdf
+inc  dec  add
+sub  mul  div
+and  orr  xor
+lsf  rsf  psh
+cal  tdf
+
+--[ 4 HAS: 8
+mov  swp  psh
+teq  tgt  tlt
+tcp  bdf
+
+--[ 5 HAS 4
+
+psh  beq  bgt
+blt  bcp
+
+Ultra specific
+NOP
+NEG
+NOT
+POP
+RET
+
+SLPi
+
+EXBb
+
+SDFb
+
+INCr
+
+DECr
+
+ADDi
+ADDd
+ADDptrr
+ADDptra
+
+SUBi
+SUBd
+SUBptrr
+SUBptra
+
+MULi
+MULd
+MULptrr
+MULptra
+
+DIVi
+DIVd
+DIVptrr
+DIVptra
+
+ANDi
+ANDd
+ANDptrr
+ANDptra
+
+ORRi
+ORRd
+ORRptrr
+ORRptra
+
+XORi
+XORd
+XORptrr
+XORptra
+
+LSFi
+LSFd
+LSFptrr
+LSFptra
+
+RSFi
+RSFd
+RSFptrr
+RSFptra
+
+PSHpi
+PSHad
+
+PSHpi
+PSHad
+
+PSHp
+PSHa
 
 
-siz	MNE	OP	exe	arg	arg	arg
+
+
+
+
+
+
+
+

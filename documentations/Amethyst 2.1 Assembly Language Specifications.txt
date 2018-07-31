@@ -65,7 +65,7 @@ mov P/A P		Move Address from address register or intermediate address to registe
 swp D D			Swap data register values
 swp P P			Swap address register values
 jmp P/L			Jump to label or ROM Index Register(IDX and STL only)
-slp D/I			Sleep (Differs from each implementation)
+slp I			Sleep (Differs from each implementation)
 exb B			Set Execute Conditional Bool
 sdf B			Set Defined Flag
 inc R			Increment Register
@@ -82,7 +82,8 @@ xor D/I			XOR bitwise on ACC
 lsf D/I			Left Shift ACC
 rsf D/I			Right Shift ACC
 psh P/A D/I		Push Stack. Address Register, Intermediate Address, Label Address and Value. Sets Execute Byte to FALSE if cannot push
-psh R/I			Push Stack. Store current address and store value. Sets Execute Byte to FALSE if cannot push
+psh D/I			Push Stack. Store current address and store value. Sets Execute Byte to FALSE if cannot push
+psh P/A D/A L   Push Stack. Store Address, Data, and Label
 pop				Pop Stack. Sets Execute Byte to FALSE if cannot pop
 cal L			Store address to IDX then jump to label. If stacks are too complicated for you.
 ret				Return/jump to IDX. If from an interrupt, return to Interrupt Address.
@@ -96,56 +97,6 @@ bgt D/I D/I L	Branch on Greater Than
 blt D/I D/I L	Branch on Less Than
 bcp D/I D/I L	Branch. Test Compare results.
 bdf B L			Branch on Defined Flag.
-
-Instructions Sorted by Instruction Size
----------------------------------------
-
---[ 2
-nop
-neg
-not
-pop
-ret
-
---[ 3
-
-jmp
-slp
-exb
-sdf
-inc
-dec
-add
-sub
-mul
-div
-add
-orr
-xor
-lsf
-rsf
-psh
-cal
-tdf
-
---[ 4
-mov
-swp
-psh
-teq
-tgt
-tlt
-tcp
-bdf
-
---[ 5
-
-beq
-bgt
-blt
-bcp
-
-
 
 
 Registers
@@ -167,6 +118,7 @@ Index Registers
 ------------------
 Read-Only registers
   PRC	Program Counter[L(litrl)]	Shows current ROM address.
+  PTR	Pointer[P(INTERNAL USE)]	
 -------------------
 
 Flags(Internal Use Only)
