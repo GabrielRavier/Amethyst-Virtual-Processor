@@ -59,7 +59,12 @@ Index Registers
 Read-Only Registers
   PRC	ROM Program Counter
 -------------------
-instr code 00  01    02    03    04   05   06     
+
+
+Unsorted by bytecode
+====================
+
+instr code 00  19    20    21    03   04   05     
 BC size    1   3     3     3     2    2    2
   Mnenomic nop mov   mov   swp   jmp  slp  sdf
    operand NOP MOVir MOVrr SWPrr JMPl SLPi SDFb
@@ -67,7 +72,7 @@ BC size    1   3     3     3     2    2    2
  Argument2     √     √     √
  Argument3
 
-instr code 07   08   09   10   11   12   13   14   15   16   17  18   19   20    21
+instr code 06   07   08   09   10   11   12   13   14   15   02  16   17   18    01
    BC size 2    2    2    2    2    2    2    2    2    2    1   2    2    2     1 
   Mnenomic add  add  sub  sub  and  and  orr  orr  xor  xor  not lsf  rsf  call  ret
    operand ADDi ADDr SUBi SUBr ANDi ANDr ORRi ORRr XORi XORr NOT LSFi RSFi CALLl RET
@@ -76,17 +81,15 @@ instr code 07   08   09   10   11   12   13   14   15   16   17  18   19   20   
  Argument3 
 
 instr code 22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    
-   BC size 
+   BC size 4     4     4     4     4     4     4     4     4     4     4     4     4     4     4     4     4
   Mnenomic beq   beq   beq   beq   bgt   bgt   bgt   bgt   blt   blt   blt   blt   bcp   bcp   bcp   bcp   bdf   
    operand BEQii BEQir BEQri BEQrr BGTii BGTir BGTri BGTrr BLTii BLTir BLTri BLTrr BCPii BCPir BCPri BCPrr BDFbl
  Argument1 √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     
  Argument2 √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     
  Argument3 √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     
 
-
-# Revision 2 C.C rev12
-
-// EDIT: Sorted them by bytecode sizes
+Sorted by bytecode sizes
+========================
 
 instr code 00  01  02  03   04   05   06   07   08   09   10   11   12   13   14   15   16   17   18     19    20    21   
 BC size    1   1   1   3    3    3    2    2    2    2    2    2    2    2    2    2    2    2    2      3     3     3
@@ -97,7 +100,7 @@ BC size    1   1   1   3    3    3    2    2    2    2    2    2    2    2    2 
  Argument3
 
 instr code 22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    
-   BC size 
+   BC size 4     4     4     4     4     4     4     4     4     4     4     4     4     4     4     4     4
   Mnenomic beq   beq   beq   beq   bgt   bgt   bgt   bgt   blt   blt   blt   blt   bcp   bcp   bcp   bcp   bdf   
    operand BEQii BEQir BEQri BEQrr BGTii BGTir BGTri BGTrr BLTii BLTir BLTri BLTrr BCPii BCPir BCPri BCPrr BDFbl
  Argument1 √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     
