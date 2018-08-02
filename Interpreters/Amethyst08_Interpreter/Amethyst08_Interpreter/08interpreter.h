@@ -39,3 +39,29 @@
 // TODO: Write TODO list before taking a 8 hour nap
 // TODO: Don't forget to write a self-deprecating message to your future self reading this code.
 // TODO: Stove warm some milk and sugar.
+
+#define acc registers[0]                                                       // Accumulator Register
+#define dat registers[1]                                                       // Data Register
+#define sav registers[2]                                                       // Save Register
+#define idx registers[3]                                                       // Index Register
+#define prc registers[4]                                                       // Program Counter
+
+#define instr PRGMMEM[ ProgramIndexAddress ]                                   // Gets the instruction
+#define arg1  PRGMMEM[ ProgramIndexAddress + 1 ]                               // Gets Argument 1
+#define arg2  PRGMMEM[ ProgramIndexAddress + 2 ]                               // Gets Argument 2
+#define arg3  PRGMMEM[ ProgramIndexAddress + 3 ]                               // Gets Argument 3
+
+#define bcsize_1 ProgramIndexAddress + 1                                       // Bytecode Sizes
+#define bcsize_2 ProgramIndexAddress + 2                                       // Bytecode Sizes
+#define bcsize_3 ProgramIndexAddress + 3                                       // Bytecode Sizes
+#define bcsize_4 ProgramIndexAddress + 4                                       // Bytecode Sizes
+
+#define PIA ProgramIndexAddress
+
+#define DF DefinedFlag
+
+// ~~ evrgrdn x krnl
+// i ship it.. no lol now it is...
+// isla x krnl
+// my new anime wife
+// i'm a sick bastard.
