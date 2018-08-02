@@ -6,9 +6,9 @@
 //
 // TODO: Use Define Preprocesors to ease torture.
 // TODO: Get spoiled with Defines
-// TODO: Add 1 instr_size instructions
-// TODO: Add 2 instr_size instructions
-// TODO: Add 3 instr_size instructions
+// DONE: Add 1 instr_size instructions
+// DONE: Add 2 instr_size instructions
+// DONE: Add 3 instr_size instructions
 // TODO: Add 4 instr_size instructions
 // TODO: Comment
 // 
