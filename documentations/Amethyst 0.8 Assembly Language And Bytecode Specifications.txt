@@ -126,7 +126,7 @@ int instruction_size = 0;
 int INDEX = 0;
 
 
-for (; INDEX > PROGRAMMEMORYSIZE; )
+for (; INDEX < PROGRAMMEMORYSIZE; )
 
 if (PRGMMEM[INSTRUCTION] >= 0 && PRGMMEM[INSTRUCTION] <= 2)
 {

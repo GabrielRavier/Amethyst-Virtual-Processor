@@ -5,6 +5,7 @@
 // =========================================
 //
 // TODO: Use Define Preprocesors to ease torture.
+// TODO: Get spoiled with Defines
 // TODO: Add 1 instr_size instructions
 // TODO: Add 2 instr_size instructions
 // TODO: Add 3 instr_size instructions
@@ -38,6 +39,8 @@
 // =================
 // TODO: Write TODO list before taking a 8 hour nap
 // TODO: Don't forget to write a self-deprecating message to your future self reading this code.
+// TODO: FIND THE BASTARD THAT STOLE MY CLIPBOARD. クリップボード ちゃん AAH IDK
+// TODO: Keep your promise that after writing the todo list, go to sleep. UWAAH BUT MY JAM CAME ON!1
 // TODO: Stove warm some milk and sugar.
 
 #define acc registers[0]                                                       // Accumulator Register
@@ -60,6 +63,7 @@
 
 #define DF DefinedFlag
 
+#define REG registers
 // ~~ evrgrdn x krnl
 // i ship it.. no lol now it is...
 // isla x krnl
