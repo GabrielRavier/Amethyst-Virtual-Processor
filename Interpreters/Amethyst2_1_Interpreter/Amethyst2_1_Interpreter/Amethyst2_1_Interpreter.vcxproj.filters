@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Amethyst2_1_Interpreter.c">
+    <ClCompile Include="Amethyst21_Interpreter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Amethyst2_1_Interpreter.h">
+    <ClInclude Include="Amethyst21_Interpreter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
