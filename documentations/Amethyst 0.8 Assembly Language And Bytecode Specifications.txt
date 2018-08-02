@@ -107,8 +107,64 @@ instr code 22    23    24    25    26    27    28    29    30    31    32    33 
  Argument2 √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     
  Argument3 √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     √     
 
+Instruction Size Ranges
+
+1: 00 to 02
+2: 03 to 18
+3: 19 to 21
+4: 22 to 38
 
 
+Parsing Example
+===============
+
+
+C Example
+
+```c
+int instruction_size = 0;
+int INDEX = 0;
+
+
+for (; INDEX > PROGRAMMEMORYSIZE; )
+
+if (PRGMMEM[INSTRUCTION] >= 0 && PRGMMEM[INSTRUCTION] <= 2)
+{
+	instruction_size = 1;
+}
+else if (PRGMMEM[INSTRUCTION] >= 3 && PRGMMEM[INSTRUCTION] <= 18)
+{
+	instruction_size = 2;
+}
+else if (PRGMMEM[INSTRUCTION] >= 19 && PRGMMEM[INSTRUCTION] <= 21)
+{
+	instruction_size = 3;
+}
+else if (PRGMMEM[INSTRUCTION] >= 22 && PRGMMEM[INSTRUCTION] <= 38)
+{
+	instruction_size = 4;
+}
+else
+{
+	// ERROR
+}
+
+switch (PRGMMEM[i])
+{
+	case 0:
+		goto DONE;
+	break;
+
+	case 1:
+		INDEX = registers[IDX]
+		goto DONE;
+	break;
+}
+DONE:
+INDEX = INDEX + instruction_size;
+// Update things. GUI, etc.
+
+```
 
 
 
