@@ -119,6 +119,7 @@ void main()
 		// swp rr
 		case 7:
 		{
+			// TODO: This only swaps acc and dat. Idiot. hasn't been changed for 3 weeks now. Idiot. 
 			if (PRGMEM[EXEC_B] == ExecuteByte || PRGMEM[EXEC_B] == EXE_DEFAULT)
 			{
 				int temp = acc;
