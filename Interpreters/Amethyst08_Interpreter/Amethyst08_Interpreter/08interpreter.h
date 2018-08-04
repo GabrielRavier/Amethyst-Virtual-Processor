@@ -4,12 +4,13 @@
 // [ TASK LIST -- Amethyst 0.8 Interpreter ]
 // =========================================
 //
-// TODO: Use Define Preprocesors to ease torture.
-// TODO: Get spoiled with Defines
+// DONE: Use Define Preprocesors to ease torture.
+// DONE: Get spoiled with Defines
 // DONE: Add 1 instr_size instructions
 // DONE: Add 2 instr_size instructions
 // DONE: Add 3 instr_size instructions
-// TODO: Add 4 instr_size instructions
+// DONE: Add 4 instr_size instructions
+// TODO: Write EXECUTION FINISHED subroutine.
 // TODO: Comment
 // 
 // Unit Test
@@ -37,9 +38,10 @@
 //
 // General TODO List
 // =================
-// TODO: Write TODO list before taking a 8 hour nap
+// DONE: Write TODO list before taking a 8 hour nap
 // TODO: Don't forget to write a self-deprecating message to your future self reading this code.
-// TODO: FIND THE BASTARD THAT STOLE MY CLIPBOARD. クリップボード ちゃん AAH IDK
+// DONE: FIND THE BASTARD THAT STOLE MY CLIPBOARD. クリップボード ちゃん AAH IDK
+//       Was just underneath a book. ;pp silly me. No bloodshed today, eh?
 // TODO: Keep your promise that after writing the todo list, go to sleep. UWAAH BUT MY JAM CAME ON!1
 // TODO: Stove warm some milk and sugar.
 
@@ -54,6 +56,9 @@
 #define arg2  PRGMMEM[ ProgramIndexAddress + 2 ]                               // Gets Argument 2
 #define arg3  PRGMMEM[ ProgramIndexAddress + 3 ]                               // Gets Argument 3
 
+
+// Useless now
+
 #define bcsize_1 ProgramIndexAddress + 1                                       // Bytecode Sizes
 #define bcsize_2 ProgramIndexAddress + 2                                       // Bytecode Sizes
 #define bcsize_3 ProgramIndexAddress + 3                                       // Bytecode Sizes
@@ -64,6 +69,15 @@
 #define DF DefinedFlag
 
 #define REG registers
+
+#define INST_SIZE instruction_size
+
+// Methods
+// =======
+void Update();
+
+
+
 // ~~ evrgrdn x krnl
 // i ship it.. no lol now it is...
 // isla x krnl
