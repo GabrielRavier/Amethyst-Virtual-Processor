@@ -10,7 +10,7 @@
 // DONE: Add 2 instr_size instructions
 // DONE: Add 3 instr_size instructions
 // DONE: Add 4 instr_size instructions
-// TODO: Write EXECUTION FINISHED subroutine.
+// DONE: Write EXECUTION FINISHED subroutine.
 // TODO: Comment
 // 
 // Unit Test
